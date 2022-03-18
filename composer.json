@@ -1,8 +1,8 @@
 {
-	"description": "Staging Mode for Rent A Music",
+	"description": "The CodeIgniter framework",
 	"name": "codeigniter/framework",
 	"type": "project",
-	"homepage": "https://fastechnology.id",
+	"homepage": "https://codeigniter.com",
 	"license": "MIT",
 	"support": {
 		"forum": "http://forum.codeigniter.com/",
