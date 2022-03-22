@@ -36,7 +36,7 @@
 							<br/>
 							<b><font size="4"><?php echo rupiah($total); ?></font></b>
 							<hr/>
-							<a href="" class="btn lengk btn-block">Details</a>
+							<a href="<?php echo base_url('order/detail/'); ?><?php echo $ca->kode_pemesanan; ?>" class="btn lengk btn-block">Details</a>
 							<br/>
 							<img class="bg-logom" src="<?php echo base_url(); ?>komponen/images/arwanalogo2.png" />
 						</div>

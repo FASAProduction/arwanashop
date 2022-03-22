@@ -76,4 +76,13 @@ class Admin_model extends CI_Model {
 		WHERE tanggal_pemesanan BETWEEN '$from' AND '$to'
 		GROUP BY kode_pemesanan ORDER BY kode_pemesanan DESC");
 	}
+	
+	function products(){
+		return $this->db->query("SELECT * FROM produk ORDER BY id_produk DESC");
+	}
+	
+	function productsadd($id_admin,$nama_produk,$deskripsi,$stok,$harga,$bpic){
+		return $this->db->query("INSERT INTO produk (id_admin,nama_produk,deskripsi,stok,harga,gambar)
+		VALUES ('$id_admin','$nama_produk','$deskripsi','$stok','$harga','$bpic')");
+	}
 }

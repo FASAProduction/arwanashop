@@ -17,27 +17,9 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>komponen/backend/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
   <!-- Custom style CSS -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>komponen/backend/assets/css/custom.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>komponen/backend/assets/css/animasi.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>komponen/css/gaya.css">
   <link rel="shortcut icon" href="<?php echo base_url(); ?>komponen/images/arwanalg.png" />
-  <style>
-  .sentuh{
-	  color: #000;
-  }
-  
-  .sentuh:hover{
-	  text-decoration: none;
-	  color: #000;
-  }
-  
-  .pdf{
-	  background-color: #cc3232;
-	  color: #fff;
-  }
-  
-  .pdf:hover{
-	  background-color: #cc3232;
-	  color: #fff;
-  }
-  </style>
 </head>
 
 <body>
@@ -119,6 +101,9 @@
             </li>
             <li class="dropdown">
               <a href="<?php echo base_url('backend/customer'); ?>" class="nav-link"><i data-feather="user"></i><span>Pelanggan</span></a>
+            </li>
+			<li class="dropdown">
+              <a href="<?php echo base_url('backend/products'); ?>" class="nav-link"><i data-feather="list"></i><span>Produk</span></a>
             </li>
 			<li class="dropdown">
               <a href="<?php echo base_url('backend/orders'); ?>" class="nav-link"><i data-feather="list"></i><span>Pemesanan</span></a>

@@ -27,11 +27,27 @@
 								<div class="col-md-3">
 									<b><?php echo rupiah($subtotal); ?></b>
 								</div>
-								<div class="col-md-5">
+								<div class="col-md-4">
 									<?php echo $c->harga; ?>
 								</div>
-								<div class="col-md-2">
-									x<?php echo $c->qty; ?>
+								<div class="col-md-4">
+									<div class="row">
+										<form action="<?php echo base_url('cart/qty'); ?>" method="POST">
+										<input type="hidden" name="id_keranjang" value="<?php echo $c->id_keranjang; ?>" />
+											<div class="col-xs-6">
+												<div class="form-group">
+													<input type="number" name="qty" value="<?php echo $c->qty; ?>"
+														class="form-control" />
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group">
+													<button type="submit" class="btn lengk"><i
+															class="fa fa-check"></i></button>
+												</div>
+											</div>
+										</form>
+									</div>
 								</div>
 							</div>
 							<hr/>

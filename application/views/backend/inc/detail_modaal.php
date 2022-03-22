@@ -12,7 +12,7 @@ $totally = $tt['totally'];
 <div class="modal fade detail<?php echo $ff; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
           aria-hidden="true">
           <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <div class="modal-content bege">
               <div class="modal-header">
                 <h5 class="modal-title" id="myLargeModalLabel">Detail Pemesanan #<?php echo $ff; ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -20,7 +20,7 @@ $totally = $tt['totally'];
                 </button>
               </div>
               <div class="modal-body">
-				<div class="card">
+				<div class="card begend">
 					<div class="card-body">
 						<div class="row">
 					<div class="col-md-6">
@@ -34,7 +34,7 @@ $totally = $tt['totally'];
 				</div>
 					</div>
 				</div>
-				<div class="card">
+				<div class="card begend">
 					<div class="card-body">
 												<h4>Rincian Produk</h4>
 						<br/>
@@ -92,9 +92,42 @@ $totally = $tt['totally'];
 						</div>
 					</div>
 				</div>
-				<div class="card">
+				<div class="card begend">
 					<div class="card-body">
-						<h4>Informasi Pembayaran</h4>
+						<h4>Informasi Pembayaran & Pengiriman</h4>
+						<br/>
+						<br/>
+						<div class="row">
+							<div class="col-md-4">
+							<small>Status Pembayaran</small>
+							<br/>
+							<font size="5"><?php echo $or->status_bayar; ?></font>
+							</div>
+							<div class="col-md-4">
+							<small>Status Pengiriman</small>
+							<br/>
+							<font size="5"><?php echo $or->status_kirim; ?></font>
+							</div>
+							<div class="col-md-4">
+								<small>Pilih Tindakan</small>
+							<br/>
+							<?php
+							if($or->status_kirim == "Dikemas"){
+								$send = "Dikirim";
+								$kode = $or->kode_pemesanan;
+							?>
+							<a href="<?php echo base_url('orders/exp'); ?>?exp=<?php echo $send; ?>&code=<?php echo $kode; ?>" class="badge badge-warning badge-shadow">Dikirim</a>
+							<a class="badge badge-success badge-shadow">Selesai</a>
+							<?php }else if($or->status_kirim == "Dikirim"){ 
+							$send = "Selesai";
+							$kode = $or->kode_pemesanan;
+							?>
+							<a class="badge badge-warning badge-shadow">Dikirim</a>
+							<a href="<?php echo base_url('orders/exp'); ?>?exp=<?php echo $send; ?>&code=<?php echo $kode; ?>" class="badge badge-success badge-shadow">Selesai</a>
+							<?php }else{ } ?>
+							</div>
+							<br/>
+						</div>
 					</div>
 				</div>
 						

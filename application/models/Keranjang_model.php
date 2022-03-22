@@ -34,7 +34,7 @@ class Keranjang_model extends CI_Model {
 	
 	public function view_keranjang(){
 		$pelang = $this->session->userdata('ses_id');
-		$a = $this->db->query("SELECT id_pelanggan, nama_produk, keranjang.id_produk as prod, qty, harga FROM keranjang
+		$a = $this->db->query("SELECT id_keranjang, id_pelanggan, nama_produk, keranjang.id_produk as prod, qty, harga FROM keranjang
 		JOIN produk ON produk.id_produk=keranjang.id_produk
 		WHERE id_pelanggan='$pelang'");
 		return $a;

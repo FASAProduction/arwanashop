@@ -25,5 +25,7 @@ class Orders extends CI_Controller {
                 $this->load->view('backend/pemesanan/pesan', $data);
                 $this->load->view('backend/templ/foot');
 	}
+	
+
 
 }

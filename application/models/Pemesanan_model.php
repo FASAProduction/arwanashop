@@ -42,13 +42,12 @@ class Pemesanan_model extends CI_Model {
     }
 	
 	function details($code){
-		$s = $this->db->query("SELECT * FROM transaksi JOIN produk ON produk.id_produk=transaksi.id_produk WHERE kode_transaksi='$code' GROUP BY kode_transaksi");
+		$s = $this->db->query("SELECT * FROM pemesanan JOIN produk ON produk.id_produk=pemesanan.id_produk WHERE kode_pemesanan='$code' GROUP BY kode_pemesanan");
 		return $s;
 	}
 
-    function pay($kode_transaksi,$payment_method,$bpay){
-        $w = $this->db->query("UPDATE transaksi SET payment_method='$payment_method', payment='$bpay' WHERE kode_transaksi='$kode_transaksi'");
-        return $w;
+    function pay($kode_pemesanan,$metode_bayar,$bpay){
+        return $this->db->query("UPDATE pemesanan SET metode_bayar='$metode_bayar', bukti='$bpay' WHERE kode_pemesanan='$kode_pemesanan'");
     }
 	
 	public function pesan(){

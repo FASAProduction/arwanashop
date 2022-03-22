@@ -51,12 +51,33 @@
 }
 
 .bg{
-	background-color: #f9f9f9;
+	background-color: #f0f0f0;
 	border-radius: 20px;
 	width: 100%;
 	padding: 22px 13px 9px 25px;
 	box-shadow: 0px 0px 13px 3px #e8e8e8;
 	margin: 0px 0px 18px 0px;
+	background-position: center;
+}
+
+.bgred{
+	background: url('<?php echo base_url(); ?>komponen/images/redbg.jpg');
+	border-radius: 20px;
+	width: 100%;
+	padding: 22px 13px 9px 25px;
+	box-shadow: 0px 0px 13px 3px #e8e8e8;
+	margin: 0px 0px 18px 0px;
+	background-position: center;
+}
+
+.bgreen{
+	background: url('<?php echo base_url(); ?>komponen/images/greenbg.jpg');
+	border-radius: 20px;
+	width: 100%;
+	padding: 22px 13px 9px 25px;
+	box-shadow: 0px 0px 13px 3px #e8e8e8;
+	margin: 0px 0px 18px 0px;
+	background-position: center;
 }
 
 .agile-login-mob {
@@ -128,8 +149,35 @@
 .latest{
 	width: 19%;
 	position: relative;
-	left: 274px;
+	left: 86%;
 	bottom: 3px;
+}
+
+.latest-web{
+	width: 19%;
+	position: relative;
+	left: 85%;
+	bottom: 3px;
+}
+
+.info{
+	background-color: #73a9ff;
+}
+
+.danger{
+	background-color: #f00;
+}
+
+.success{
+	background-color: #2cca00;
+}
+
+.primary{
+	background-color: #2767ff;
+}
+
+.warning{
+	background-color: #ffe300;
 }
 </style>
 </head>

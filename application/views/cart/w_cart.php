@@ -41,7 +41,8 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="row">
-                                    <form>
+                                    <form action="<?php echo base_url('cart/qty'); ?>" method="POST">
+									<input type="hidden" name="id_keranjang" value="<?php echo $c->id_keranjang; ?>" />
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <input type="number" name="qty" value="<?php echo $c->qty; ?>"

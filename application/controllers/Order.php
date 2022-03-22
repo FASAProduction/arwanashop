@@ -31,20 +31,24 @@ class Order extends CI_Controller {
     }
 	
 	public function detail($code){
-		$d['title'] = "Pembayaran Transaksi " . $code . " - Sambal Resep Njenot";
+		$head['judul'] = 'Arwana Store';
+		$cst = $this->session->userdata('ses_id');
+		$head['cust'] = $this->db->query("SELECT * FROM pelanggan WHERE id_pelanggan='$cst'")->result();
+		$head['krjg'] = $this->db->query("SELECT * FROM keranjang WHERE id_pelanggan='$cst'")->num_rows();
 		$d['code'] = $code;
 		$d['detail'] = $this->pemesanan->details($code)->result();
-		$d['total_cart'] = $this->keranjang->get()->num_rows();
-		$this->load->view('pay', $d);
+		$this->load->view('templ/head', $head);
+		$this->load->view('pes/pay', $d);
+		$this->load->view('templ/foot');
 	}
 	
 	public function process_payment(){
-		$kode_transaksi = $this->input->post('kode_transaksi', TRUE);
-		$payment_method = $this->input->post('payment_method', TRUE);
+		$kode_pemesanan = $this->input->post('kode_pemesanan', TRUE);
+		$metode_bayar = $this->input->post('metode_bayar', TRUE);
 		$paymento = $this->input->post('paymento');
-		$config['upload_path']          = 'assets/img/payment';
+		$config['upload_path']          = 'komponen/images/payment';
 		$config['allowed_types']        = 'jpg|jpeg|png';
-		$config['payment']            	= $paymento;
+		$config['bukti']            	= $paymento;
 		$config['overwrite']            = true;
 		$config['max_size']             = 6024; // 1MB
 		$config['max_width']            = 800;
@@ -52,12 +56,12 @@ class Order extends CI_Controller {
 
 		$this->load->library('upload', $config);
 
-		if (!$this->upload->do_upload('payment')) {
+		if (!$this->upload->do_upload('bukti')) {
 			$data['error'] = $this->upload->display_errors();
 		} else {
-			$b = array('payment' => $this->upload->data());
-			$bpay = $b['payment']['file_name'];
-			$this->pemesanan->pay($kode_transaksi,$payment_method,$bpay);
+			$b = array('bukti' => $this->upload->data());
+			$bpay = $b['bukti']['file_name'];
+			$this->pemesanan->pay($kode_pemesanan,$metode_bayar,$bpay);
 		}
 
 	redirect('order');
