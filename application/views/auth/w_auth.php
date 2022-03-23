@@ -1,7 +1,7 @@
-<div class="col-md-6">
+				<div class="col-md-6">
 					<h2>Masuk Akun</h2>
 					<?php echo $this->session->flashdata('yeay'); ?>
-					<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+					<div class="login-form-grids animated wow slideInUp lenkung" data-wow-delay=".5s">
 						<form action="<?php echo base_url('auth/login'); ?>" method="POST">
 							<div class="form-group">
 								<label>Username</label>
@@ -21,7 +21,7 @@
 				<div class="col-md-6">
 				<h2>Buat Akun</h2>
 		
-					<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+					<div class="login-form-grids animated wow slideInUp lenkung" data-wow-delay=".5s">
 						<form action="<?php echo base_url('auth/create'); ?>" method="POST">
 							<div class="form-group">
 								<label>Username</label>

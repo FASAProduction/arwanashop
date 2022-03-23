@@ -12,7 +12,9 @@
 <link href="<?php echo base_url(); ?>komponen/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="<?php echo base_url(); ?>komponen/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="<?php echo base_url(); ?>komponen/css/font-awesome.css" rel="stylesheet"> 
+<link href="<?php echo base_url(); ?>komponen/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo base_url(); ?>komponen/backend/assets/css/animasi.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>komponen/css/gaya2.css">
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -32,154 +34,6 @@
 </script>
 <link rel="icon" href="<?php echo base_url(); ?>komponen/images/arwanalg.png" />
 <!-- start-smoth-scrolling -->
-<style>
-.tbl{
-	border-radius: 10px 10px;
-}
-
-.bulet{
-	border-radius: 50%;
-	background-color: #5b2056;
-	width: 20px;
-	display: inline-block;
-	color: #fff;
-}
-
-.notif{
-	width: 100%;
-	border-radius: 20px;
-}
-
-.bg{
-	background-color: #f0f0f0;
-	border-radius: 20px;
-	width: 100%;
-	padding: 22px 13px 9px 25px;
-	box-shadow: 0px 0px 13px 3px #e8e8e8;
-	margin: 0px 0px 18px 0px;
-	background-position: center;
-}
-
-.bgred{
-	background: url('<?php echo base_url(); ?>komponen/images/redbg.jpg');
-	border-radius: 20px;
-	width: 100%;
-	padding: 22px 13px 9px 25px;
-	box-shadow: 0px 0px 13px 3px #e8e8e8;
-	margin: 0px 0px 18px 0px;
-	background-position: center;
-}
-
-.bgreen{
-	background: url('<?php echo base_url(); ?>komponen/images/greenbg.jpg');
-	border-radius: 20px;
-	width: 100%;
-	padding: 22px 13px 9px 25px;
-	box-shadow: 0px 0px 13px 3px #e8e8e8;
-	margin: 0px 0px 18px 0px;
-	background-position: center;
-}
-
-.agile-login-mob {
-    float: right;
-    width: 100%;
-    text-align: center;
-    padding: 8px 0;
-}
-
-.agile-login-mob ul li {
-    display: inline-block;
-    padding: 0em 1em;
-}
-.agile-login-mob ul li a {
-    font-size: 1em;
-    text-transform: capitalize;
-    color: #fff;
-    text-decoration: none;
-}
-
-.floating {
-        position: fixed;
-        right: 0px;
-        bottom: 0px;
-        z-index: 999;
-		width: 100%;
-		background-color: #f9f9f9;
-		padding: 13px 7px -1px 0px;
-		box-shadow: 0px 0px 7px 1px #e8e8e8;
-		padding: 10px 0px 0px 0px;
-    }
-
-.panjj{
-	width: 110%;
-	margin: -12px 0px 0px -17px;
-	padding: 10px 0px 8px 0px;
-}
-
-.lengk{
-	border-width: 2px;
-	border-color: #5b2056;
-	border-radius: 20px 20px;
-	background-color: #fff;
-	color: #000;
-}
-
-.lengk:hover{
-	background-color: #5b2056;
-	color: #fff;
-}
-
-.bg-logo{
-	position: relative;
-	bottom: -4px;
-	width: 37%;
-	left: 198px;
-	opacity: 0.3;
-}
-
-.bg-logom{
-	position: relative;
-	bottom: -4px;
-	width: 37%;
-	left: 168px;
-	opacity: 0.3;
-	margin: 0px 10px 0px 0px;
-}
-
-.latest{
-	width: 19%;
-	position: relative;
-	left: 86%;
-	bottom: 3px;
-}
-
-.latest-web{
-	width: 19%;
-	position: relative;
-	left: 85%;
-	bottom: 3px;
-}
-
-.info{
-	background-color: #73a9ff;
-}
-
-.danger{
-	background-color: #f00;
-}
-
-.success{
-	background-color: #2cca00;
-}
-
-.primary{
-	background-color: #2767ff;
-}
-
-.warning{
-	background-color: #ffe300;
-}
-</style>
 </head>
 	
 <body>
@@ -274,7 +128,7 @@
 			<nav class="navbar navbar-default">
 							<!-- Brand and toggle get grouped for better mobile display -->
 							<div class="navbar-header nav_2">
-								<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+								<button type="button" class="navbar-toggle collapsed navbar-toggle1" role="button" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
 									<span class="sr-only">Toggle navigation</span>
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>

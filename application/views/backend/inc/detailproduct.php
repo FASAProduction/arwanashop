@@ -41,7 +41,7 @@ foreach($prdct as $dee):
 							</div>
 						</div>
 						<a href="#edit<?php echo $dee->id_produk; ?>" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="edit<?php echo $dee->id_produk; ?>"><span class="badge badge-success"><i class="fa fa-pencil"></i> Edit Produk</span></a>
-						<a href=""><span class="badge badge-success"><i class="fa fa-plus"></i> Tambah Stok</span></a>
+						<a href="#addstock<?php echo $dee->id_produk; ?>" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="addstock<?php echo $dee->id_produk; ?>"><span class="badge badge-success"><i class="fa fa-plus"></i> Tambah Stok</span></a>
 						<a href=""><span class="badge badge-danger"><i class="fa fa-trash"></i> Hapus Produk</span></a>
 					</div>
 					<div class="col-md-6">
@@ -84,6 +84,29 @@ foreach($prdct as $dee):
 									</div>
 									<div class="form-group">
 										<button type="submit" class="btn btn-success btn-block">Edit</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 collapse" id="addstock<?php echo $dee->id_produk; ?>">
+						<div class="card">
+							<div class="card-body">
+								<form action="<?php echo base_url('backend/products/addstock'); ?>" method="POST" enctype="multipart/form-data">
+									<div class="form-group">
+										<label>Nama Produk</label>
+										<input type="text" class="form-control" name="nama_produk" value="<?php echo $dee->nama_produk; ?>" readonly />
+									</div>
+									<div class="form-group">
+										<label>Stok Saat Ini</label>
+										<input type="number" class="form-control" value="<?php echo $dee->stok; ?>" readonly />
+									</div>
+									<div class="form-group">
+										<label>Stok Tambahan</label>
+										<input type="number" class="form-control" name="stok" required />
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-success btn-block">Tambah Stok</button>
 									</div>
 								</form>
 							</div>

@@ -45,14 +45,15 @@ class Order extends CI_Controller {
 	public function process_payment(){
 		$kode_pemesanan = $this->input->post('kode_pemesanan', TRUE);
 		$metode_bayar = $this->input->post('metode_bayar', TRUE);
+		$status_bayar = "Sudah Bayar";
 		$paymento = $this->input->post('paymento');
 		$config['upload_path']          = 'komponen/images/payment';
 		$config['allowed_types']        = 'jpg|jpeg|png';
 		$config['bukti']            	= $paymento;
 		$config['overwrite']            = true;
-		$config['max_size']             = 6024; // 1MB
-		$config['max_width']            = 800;
-		$config['max_height']           = 700;
+		$config['max_size']             = 10024; // 1MB
+		// $config['max_width']            = 800;
+		// $config['max_height']           = 700;
 
 		$this->load->library('upload', $config);
 
@@ -61,7 +62,7 @@ class Order extends CI_Controller {
 		} else {
 			$b = array('bukti' => $this->upload->data());
 			$bpay = $b['bukti']['file_name'];
-			$this->pemesanan->pay($kode_pemesanan,$metode_bayar,$bpay);
+			$this->pemesanan->pay($kode_pemesanan,$status_bayar,$metode_bayar,$bpay);
 		}
 
 	redirect('order');

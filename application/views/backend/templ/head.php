@@ -72,9 +72,13 @@
               </div>
             </div>
           </li>
+		  <?php
+		  $ade = $admn['nama_admin'];
+		  $first = substr($ade,0,1);
+		  $second = substr($ade,6,1);
+		  ?>
           <li class="dropdown"><a href="#" data-toggle="dropdown"
-              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="<?php echo base_url(); ?>komponen/backend/assets/img/user.png"
-                class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
+              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <figure class="avatar mr-2 bg-info text-white" data-initial="<?php echo $first ."". $second; ?>"></figure> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title">Halo <?php echo $admn['nama_admin']; ?></div>
               <a href="profile.html" class="dropdown-item has-icon"> <i class="far
@@ -106,7 +110,7 @@
               <a href="<?php echo base_url('backend/products'); ?>" class="nav-link"><i data-feather="list"></i><span>Produk</span></a>
             </li>
 			<li class="dropdown">
-              <a href="<?php echo base_url('backend/orders'); ?>" class="nav-link"><i data-feather="list"></i><span>Pemesanan</span></a>
+              <a href="<?php echo base_url('backend/orders'); ?>" class="nav-link"><i data-feather="list"></i><span>Pemesanan</span> <div class="bulet">0</div></a>
             </li>
 			<li class="dropdown">
               <a href="<?php echo base_url('backend/report'); ?>" class="nav-link"><i data-feather="list"></i><span>Laporan</span></a>

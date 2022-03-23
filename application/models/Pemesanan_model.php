@@ -46,8 +46,8 @@ class Pemesanan_model extends CI_Model {
 		return $s;
 	}
 
-    function pay($kode_pemesanan,$metode_bayar,$bpay){
-        return $this->db->query("UPDATE pemesanan SET metode_bayar='$metode_bayar', bukti='$bpay' WHERE kode_pemesanan='$kode_pemesanan'");
+    function pay($kode_pemesanan,$status_bayar,$metode_bayar,$bpay){
+        return $this->db->query("UPDATE pemesanan SET status_bayar='$status_bayar', metode_bayar='$metode_bayar', bukti='$bpay' WHERE kode_pemesanan='$kode_pemesanan'");
     }
 	
 	public function pesan(){

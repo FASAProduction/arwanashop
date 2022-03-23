@@ -29,6 +29,13 @@ class Products extends CI_Controller {
 		$id_admin = $this->session->userdata('ses_id');
 		$nama_produk = $this->input->post('nama_produk', TRUE);
 		$deskripsi = $this->input->post('deskripsi', TRUE);
+		$pecah = explode("\r\n\r\n", $deskripsi);
+		$hasil = "";
+		for ($i=0; $i<=count($pecah)-1; $i++)
+		{
+		   $part = str_replace($pecah[$i], "<p>".$pecah[$i]."</p>", $pecah[$i]);
+		   $hasil .= $part;
+		}
 		$stok = $this->input->post('stok', TRUE);
 		$harga = $this->input->post('harga', TRUE);
 		$config['upload_path']          = 'komponen/images/products';
@@ -46,7 +53,7 @@ class Products extends CI_Controller {
 		} else {
 			$b = array('gambar' => $this->upload->data());
 			$bpic = $b['gambar']['file_name'];
-			$this->admin->productsadd($id_admin,$nama_produk,$deskripsi,$stok,$harga,$bpic);
+			$this->admin->productsadd($id_admin,$nama_produk,$hasil,$stok,$harga,$bpic);
 		}
 	$this->session->set_flashdata('addsuccess', '<div class="col-md-12"><div class="alert alert-success"><b>BERHASIL!</b> Produk sudah ditambahkan. <a href="" data-dismiss="true">Oke</a></div></div>');
 	redirect('backend/products');

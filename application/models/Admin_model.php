@@ -81,8 +81,8 @@ class Admin_model extends CI_Model {
 		return $this->db->query("SELECT * FROM produk ORDER BY id_produk DESC");
 	}
 	
-	function productsadd($id_admin,$nama_produk,$deskripsi,$stok,$harga,$bpic){
+	function productsadd($id_admin,$nama_produk,$hasil,$stok,$harga,$bpic){
 		return $this->db->query("INSERT INTO produk (id_admin,nama_produk,deskripsi,stok,harga,gambar)
-		VALUES ('$id_admin','$nama_produk','$deskripsi','$stok','$harga','$bpic')");
+		VALUES ('$id_admin','$nama_produk','$hasil','$stok','$harga','$bpic')");
 	}
 }

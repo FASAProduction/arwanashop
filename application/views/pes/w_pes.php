@@ -13,10 +13,7 @@
 							$total = $t['ttl'];
 							?>
 				<div class="col-md-4">
-					<?php
-					if($ca->status_bayar == "Belum Bayar"){
-					?>
-					<div class="card bgred">
+					<div class="card bg">
 						<div class="card-body">
 							<?php
 							$pp = $this->session->userdata('ses_id');
@@ -36,42 +33,17 @@
 							<small>Total</small>
 							<br/>
 							<b><font size="4"><?php echo rupiah($total); ?></font></b>
+							<br/>
+							<br/>
+							<small>Status Bayar</small>
+							<br/>
+							<b><font size="4"><?php echo $ca->status_bayar; ?></font></b>
 							<hr/>
 							<a href="<?php echo base_url('order/detail/'); ?><?php echo $ca->kode_pemesanan; ?>" class="btn lengk btn-block">Details</a>
 							<br/>
 							<img class="bg-logo" src="<?php echo base_url(); ?>komponen/images/arwanalogo2.png" />
 						</div>
 					</div>
-					<?php
-					}else{
-					?>
-					<div class="card bgreen">
-						<div class="card-body">
-							<?php
-							$pp = $this->session->userdata('ses_id');
-							$r = $this->db->query("SELECT MAX(kode_pemesanan) as upper FROM pemesanan WHERE id_pelanggan='$pp'")->row_array();
-							$ea = $r['upper'];
-							if($code == $ea){
-							?>
-							<img class="latest-web" src="<?php echo base_url(); ?>komponen/images/latest.png" />
-							<?php }else{ }?>
-							<h3><?php echo $ca->kode_pemesanan; ?></h3>
-							<hr/>
-							<small>Tanggal Pembelian</small>
-							<br/>
-							<b><font size="4"><?php echo format_indo($ca->tanggal_pemesanan); ?></font></b>
-							<br/>
-							<br/>
-							<small>Total</small>
-							<br/>
-							<b><font size="4"><?php echo rupiah($total); ?></font></b>
-							<hr/>
-							<a href="<?php echo base_url('order/detail/'); ?><?php echo $ca->kode_pemesanan; ?>" class="btn lengk btn-block">Details</a>
-							<br/>
-							<img class="bg-logo" src="<?php echo base_url(); ?>komponen/images/arwanalogo2.png" />
-						</div>
-					</div>
-					<?php } ?>
 				</div>
 				<?php endforeach; 
 							}else{
