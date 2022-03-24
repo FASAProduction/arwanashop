@@ -19,7 +19,7 @@ class Order extends CI_Controller {
     }
 
     public function index(){
-        $head['judul'] = 'Arwana Store';
+        $head['judul'] = 'My Orders - Arwana Store';
 		$cst = $this->session->userdata('ses_id');
 		$head['cust'] = $this->db->query("SELECT * FROM pelanggan WHERE id_pelanggan='$cst'")->result();
 		$head['krjg'] = $this->db->query("SELECT * FROM keranjang WHERE id_pelanggan='$cst'")->num_rows();

@@ -1,7 +1,10 @@
 <?php
 foreach($all as $al):
 $kd = $al->kode_pemesanan;
-$p = $this->db->query("SELECT * FROM pelanggan JOIN pemesanan ON pemesanan.id_pelanggan=pelanggan.id_pelanggan WHERE kode_pemesanan='$kd' GROUP BY kode_pemesanan")->row_array();
+$p = $this->db->query("SELECT * FROM pelanggan
+JOIN pemesanan ON pemesanan.id_pelanggan=pelanggan.id_pelanggan
+JOIN provinsi ON provinsi.id_provinsi=pelanggan.id_provinsi
+WHERE kode_pemesanan='$kd' GROUP BY kode_pemesanan")->row_array();
 $pr = $this->db->query("SELECT * FROM produk JOIN pemesanan ON pemesanan.id_produk=produk.id_produk WHERE kode_pemesanan='$kd'")->result();
 $to = $this->db->query("SELECT SUM(total) as totally FROM pemesanan WHERE kode_pemesanan='$kd'")->result();
 ?>
@@ -27,11 +30,11 @@ $to = $this->db->query("SELECT SUM(total) as totally FROM pemesanan WHERE kode_p
         <table style='width:100%; font-size:11pt; font-family:calibri; border-collapse: collapse;' border='0'>
             <td width='70%' align='left' style='padding-right:80px; vertical-align:top'>
                 <span style='font-size:15pt'><b><img src="<?php echo base_url(); ?>komponen/images/arwanalogo2.png" width="30%" /></b></span></br>
-                No address
+                Jl. Mungguk Batu, Selimbau, Kalimantan Barat, Indonesia 78765
                 <br />
-                info@arwanastore.com
+                iinfebryanda23@gmail.com
                 <br />
-                0853 3284 2931
+                +62857-5135-1752
             </td>
             <td style='vertical-align:top' width='30%' align='left'>
                 <b><span style='font-size:15pt'>FAKTUR PENJUALAN</span></b></br>
@@ -43,12 +46,13 @@ $to = $this->db->query("SELECT SUM(total) as totally FROM pemesanan WHERE kode_p
         <table style='width:100%; font-size:12pt; font-family:calibri; border-collapse: collapse;' border='0'>
             <td width='70%' align='left' style='padding-right:80px; vertical-align:top'>
                 Nama Pelanggan : <?php echo $p['nama_lengkap']; ?></br>
-                Alamat : <?php echo $p['alamat']; ?>
+                Alamat : <?php echo $p['alamat']; ?>, <?php echo $p['nama_provinsi']; ?>
             </td>
             <td style='vertical-align:top' width='30%' align='left'>
                 No Telp : <?php echo $p['no_hp']; ?>
             </td>
         </table>
+		<br/>
         <table cellspacing='0' style='width:100%; font-size:11pt; font-family:calibri;  border-collapse: collapse;'
             border='1'>
 

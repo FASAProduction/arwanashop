@@ -16,28 +16,19 @@ foreach($prdct as $dee):
 					<div class="col-md-6">
 						<div class="card">
 							<div class="card-body">
-								<div class="row">
-									<div class="col-md-6">
-										Nama Produk
+								Nama Produk : <b><?php echo $dee->nama_produk; ?></b>
 										<hr/>
-										Deskripsi
+										<?php
+											if($dee->deskripsi == null){
+											?>
+										Deskripsi: <b>Tidak ada deskripsi produk.</b>
+											<?php }else{ ?>
+										Deskripsi: <b><?php echo $dee->deskripsi; ?></b>
+											<?php } ?>
 										<hr/>
-										Harga
+										Harga: <b><?php echo rupiah($dee->harga); ?></b>
 										<hr/>
-										Stok
-									</div>
-									<div class="col-md-6">
-										<b>
-											: <?php echo $dee->nama_produk; ?>
-											<hr/>
-											: <?php echo $dee->deskripsi; ?>
-											<hr/>
-											: <?php echo rupiah($dee->harga); ?>
-											<hr/>
-											: <?php echo $dee->stok; ?> Ekor
-										</b>
-									</div>
-								</div>
+										Stok: <b><?php echo $dee->stok; ?> Ekor</b>
 							</div>
 						</div>
 						<a href="#edit<?php echo $dee->id_produk; ?>" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="edit<?php echo $dee->id_produk; ?>"><span class="badge badge-success"><i class="fa fa-pencil"></i> Edit Produk</span></a>
@@ -48,12 +39,19 @@ foreach($prdct as $dee):
 					<?php
 					if($dee->gambar == null){
 					?>
-					<img src="<?php echo base_url(); ?>komponen/images/arwanalogo2.png" class="timbul" />
+					<img src="<?php echo base_url(); ?>komponen/images/nophoto.png" class="timbul" />
 					<?php }else{ ?>
 					<img src="<?php echo base_url(); ?>komponen/images/products/<?php echo $dee->gambar; ?>" class="timbul" />
 					<?php } ?>
 					<br/>
 					<br/>
+					<div class="form-group">
+						<label>Ganti Gambar</label>
+						<input type="file" name="gambar" class="form-control" />
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success btn-block">Ubah</button>
+					</div>
 					<br/>
 					</div>
 					<br/>

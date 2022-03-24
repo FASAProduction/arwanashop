@@ -20,7 +20,7 @@ $e = $det->id_produk;
 				<?php
 				if($det->gambar == null){
 				?>
-					<img id="example" src="<?php echo base_url(); ?>komponen/images/arwanalg.png" alt=" " class="img-responsive">
+					<img id="example" src="<?php echo base_url(); ?>komponen/images/nophoto.png" alt=" " class="img-responsive">
 				<?php }else{ ?>
 					<img id="example" src="<?php echo base_url(); ?>komponen/images/products/<?php echo $det->gambar; ?>" alt=" " class="img-responsive">
 				<?php } ?>
@@ -46,7 +46,7 @@ $e = $det->id_produk;
 											if($this->session->userdata('masuk')){
 											?>
 											<div class="snipcart-details top_brand_home_details">
-												<a href="<?php echo base_url('home/add/'); ?><?php echo $r->id_produk; ?>" class="btn lengku">Tambahkan Ke Keranjang</a>
+												<a href="<?php echo base_url('home/add/'); ?><?php echo $det->id_produk; ?>" class="btn lengku">Tambahkan Ke Keranjang</a>
 											</div>
 											<?php }else{ ?>
 											<div class="snipcart-details top_brand_home_details">
@@ -68,10 +68,20 @@ $e = $det->id_produk;
 				$i = $this->db->query("SELECT * FROM produk WHERE id_produk NOT IN ($e)")->result();
 				foreach($i as $r):
 				?>
-					<div class="col-md-4 top_brand_left-1">
+					<div class="col-md-3 top_brand_left-1">
 						<div class="card bg">
 								<div class="card-body">
-									<a href="<?php echo base_url('detail/product/'); ?><?php echo $r->id_produk; ?>"><img title=" " alt=" " src="<?php echo base_url(); ?>komponen/images/arwanalg.png" width="100%"></a>
+									<a href="<?php echo base_url('detail/product/'); ?><?php echo $r->id_produk; ?>">
+									<?php
+									if($r->gambar == null){
+									?>
+									<img title="<?php echo $r->nama_produk; ?>" alt="<?php echo $r->nama_produk; ?>" src="<?php echo base_url(); ?>komponen/images/nophoto.png" width="100%">
+									<?php }else{ ?>
+									<img title="<?php echo $r->nama_produk; ?>" alt="<?php echo $r->nama_produk; ?>" src="<?php echo base_url(); ?>komponen/images/products/<?php echo $r->gambar; ?>" width="100%">
+									<?php } ?>
+									</a>
+									<br/>
+									<br/>
 									<h4><?php echo $r->nama_produk; ?></h4>
 									<br/>
 									<h4><?php echo rupiah($r->harga); ?></h4>

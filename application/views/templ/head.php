@@ -99,7 +99,7 @@
 		<div class="container">
 		<div class="w3ls_logo_products_left1">
 				<ul class="phone_email">
-					<li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : (+0123) 234 567</li>
+					<li><i class="fa fa-phone" aria-hidden="true"></i>Order online: +6285751351752</li>
 					
 				</ul>
 			</div>
@@ -164,7 +164,7 @@
 										</ul>
 									</li>
 									-->
-									<li><a href="<?php echo base_url('product'); ?>">Produk</a></li>
+									<li><a href="<?php echo base_url('products'); ?>">Produk</a></li>
 									<li><a href="<?php echo base_url('order'); ?>">Pesanan Saya</a></li>
 									<li><a href="<?php echo base_url('contact'); ?>">Kontak Kami</a></li>
 								</ul>
@@ -194,7 +194,7 @@
 										</ul>
 									</li>
 									-->
-									<li><a href="<?php echo base_url('product'); ?>">Produk</a></li>
+									<li><a href="<?php echo base_url('products'); ?>">Produk</a></li>
 									<li><a href="<?php echo base_url('contact'); ?>">Kontak Kami</a></li>
 								</ul>
 								<?php } ?>

@@ -24,9 +24,11 @@ class Dashboard extends CI_Controller {
 				$data['trans'] = $this->admin->transaction()->num_rows();
 				$data['cust'] = $this->admin->customer()->num_rows();
 				$data['total'] = $this->admin->totalget()->row_array();
+				$data['produk'] = $this->admin->products()->result();
+				$data['produka'] = $this->admin->products()->num_rows();
                 $this->load->view('backend/templ/head', $head);
                 $this->load->view('backend/dash', $data);
-                $this->load->view('backend/templ/foot');
+                $this->load->view('backend/templ/foot', $data);
 	}
 
 }

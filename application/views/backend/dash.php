@@ -72,6 +72,16 @@
                 </div>
               </div>
             </div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Grafik Penjualan</h4>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="myChart"></canvas>
+                  </div>
+                </div>
+              </div>
           </div>
 	  </div>
 </section>

@@ -40,7 +40,13 @@
                                 <?php echo rupiah($or->total); ?>
                             </td>
 							<td class="max-texts">
+							<?php
+							if($or->status_bayar == "Belum Bayar"){
+							?>
                                 <span class="badge badge-danger badge-shadow"><?php echo $or->status_bayar; ?></span>
+							<?php }else{ ?>
+                                <span class="badge badge-success badge-shadow"><?php echo $or->status_bayar; ?></span>
+							<?php } ?>
                             </td>
 							<td class="max-texts">
                                 <span class="badge badge-info badge-shadow"><?php echo $or->status_kirim; ?></span>

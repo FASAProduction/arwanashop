@@ -110,7 +110,7 @@
               <a href="<?php echo base_url('backend/products'); ?>" class="nav-link"><i data-feather="list"></i><span>Produk</span></a>
             </li>
 			<li class="dropdown">
-              <a href="<?php echo base_url('backend/orders'); ?>" class="nav-link"><i data-feather="list"></i><span>Pemesanan</span> <div class="bulet">0</div></a>
+              <a href="<?php echo base_url('backend/orders'); ?>" class="nav-link"><i data-feather="list"></i><span>Pemesanan</span></a>
             </li>
 			<li class="dropdown">
               <a href="<?php echo base_url('backend/report'); ?>" class="nav-link"><i data-feather="list"></i><span>Laporan</span></a>

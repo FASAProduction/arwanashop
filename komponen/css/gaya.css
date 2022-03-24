@@ -80,14 +80,3 @@
 	box-shadow: 0px 0px 8px 2px #ccc;
 	border-radius: 20px 20px;
 }
-
-.bulet{
-	border-radius: 50%;
-	background-color: #f00;
-	color: #fff;
-	width: 11%;
-	position: relative;
-	height: 1%;
-	padding: 1px 4px 28px 7px;
-	margin: 5px 0px 0px -128px;
-}

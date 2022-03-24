@@ -2,7 +2,7 @@
 	<div class="newproducts-w3agile">
 		<div class="container">
 			<?php echo $this->session->flashdata('yey'); ?>
-			<h3>Produk Baru</h3>
+			<h3>Semua Produk</h3>
 				<div class="agile_top_brands_grids">
 				<?php
 				foreach($p as $pro):
