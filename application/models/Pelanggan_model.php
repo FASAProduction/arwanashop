@@ -12,5 +12,13 @@ class Pelanggan_model extends CI_Model {
         VALUES ('$username','$password','$nama_lengkap','$alamat','$id_provinsi','$no_hp')");
         return $quu;
     }
+	
+	function cust(){
+		$cuss = $this->session->userdata('ses_id');
+		return $this->db->query("SELECT * FROM pelanggan
+		JOIN provinsi
+		ON provinsi.id_provinsi=pelanggan.id_provinsi
+		WHERE id_pelanggan='$cuss'");
+	}
 
 }

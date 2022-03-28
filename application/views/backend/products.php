@@ -21,7 +21,7 @@
               </div>
 			</a>
             </div>
-			<?php echo $this->session->flashdata('addsuccess'); ?>
+			<?php echo $this->session->flashdata('succ'); ?>
             <div class="col-md-12">
 				<div class="card">
                   <div class="card-header">
@@ -73,8 +73,94 @@
                   </div>
                 </div>
 			</div>
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<h3>Statistik Penjualan Produk</h3>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<?php
+							$juala = $this->db->query("SELECT nama_produk, SUM(qty) AS toot
+								FROM pemesanan
+								JOIN produk ON produk.id_produk=pemesanan.id_produk
+								GROUP BY pemesanan.id_produk")->result();
+							?>
+							<div class="col-md-6">
+								<h4>Visual</h4>
+								<br/>
+								<br/>
+								<b>
+								<div class="row">
+									<div class="col-md-6">
+									Nama Produk
+									</div>
+									<div class="col-md-6">
+									Jumlah Pembelian
+									</div>
+								</div>
+								</b>
+								<hr/>
+								<?php
+								foreach($juala as $sell):
+								?>
+								<div class="row">
+									<div class="col-md-6">
+									<?php echo $sell->nama_produk; ?>
+									</div>
+									<div class="col-md-6">
+									<?php echo $sell->toot; ?> Ekor
+									</div>
+								</div>
+								<?php endforeach; ?>
+							</div>
+								<?php
+								$jual = $this->db->query("SELECT nama_produk, SUM(qty) AS toot
+								FROM pemesanan
+								JOIN produk ON produk.id_produk=pemesanan.id_produk
+								GROUP BY pemesanan.id_produk")->result();
+								$nama_produk= "";
+								$jumlah=null;
+								foreach ($jual as $item)
+								{
+									$prodd=$item->nama_produk;
+									$nama_produk .= "'$prodd'". ", ";
+									$jum=$item->toot;
+									$jumlah .= "$jum". ", ";
+								}
+								?>
+							<div class="col-md-6">
+								<h4>Grafik</h4>
+								<br/>
+								<br/>
+								<canvas id="myChart"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
           </div>
 	  </div>
 </section>
 <?php $this->load->view('backend/inc/addproducts'); ?>
 <?php $this->load->view('backend/inc/detailproduct'); ?>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script>
+		var ctx = document.getElementById('myChart').getContext('2d');
+				var chart = new Chart(ctx, {
+					// The type of chart we want to create
+					type: 'pie',
+					// The data for our dataset
+					data: {
+						labels: [<?php echo $nama_produk; ?>],
+						datasets: [{
+							label:'Data Penjualan Arwana',
+							backgroundColor: ['rgb(255, 99, 132)', 'rgba(56, 86, 255, 0.87)', 'rgb(60, 179, 113)','rgb(175, 238, 239)'],
+							borderColor: ['rgb(255, 99, 132)'],
+							data: [<?php echo $jumlah; ?>]
+						}]
+					},
+					// Configuration options go here
+					
+				});
+	</script>

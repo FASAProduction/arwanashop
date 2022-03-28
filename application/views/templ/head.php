@@ -55,7 +55,7 @@
 					$e = $this->db->query("SELECT * FROM pelanggan WHERE id_pelanggan='$p'")->row_array();
 				?>
 					<ul>
-						<li><a href="<?php echo base_url('auth'); ?>"><?php echo $e['username']; ?></a></li>
+						<li><a href="<?php echo base_url('my'); ?>"><?php echo $e['username']; ?></a></li>
 						<li><a href="<?php echo base_url('auth/logout'); ?>">Keluar</a></li>
 						<li>
 							<a href="<?php echo base_url('cart'); ?>"><i class="fa fa-shopping-cart"></i></a>
@@ -77,7 +77,7 @@
 					$e = $this->db->query("SELECT * FROM pelanggan WHERE id_pelanggan='$p'")->row_array();
 				?>
 					<ul>
-						<li><a href="<?php echo base_url('auth'); ?>"><?php echo $e['username']; ?></a></li>
+						<li><a href="<?php echo base_url('my'); ?>"><?php echo $e['username']; ?></a></li>
 						<li><a href="<?php echo base_url('auth/logout'); ?>">Keluar</a></li>
 						<li>
 							<a href="<?php echo base_url('cart'); ?>"><i class="fa fa-shopping-cart"></i></a>

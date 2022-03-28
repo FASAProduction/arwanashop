@@ -50,7 +50,12 @@ class Report extends CI_Controller {
         $from = $this->input->get('from');
         $to = $this->input->get('to');
 		$d['title'] = "Faktur Penjualan dari tanggal " . $from . "-" . $to;
-		$d['afaktur'] = $this->db->query("SELECT * FROM produk JOIN pemesanan ON pemesanan.id_produk=produk.id_produk WHERE tanggal_pemesanan BETWEEN '$from' AND '$to' AND status_kirim='Selesai' GROUP BY kode_pemesanan")->result();
+		$d['from'] = $from;
+		$d['to'] = $to;
+		$d['afaktur'] = $this->db->query("SELECT nama_produk, SUM(qty) AS quty, SUM(total) AS toutal
+		FROM pemesanan
+		JOIN produk ON produk.id_produk=pemesanan.id_produk
+		WHERE tanggal_pemesanan BETWEEN '$from' AND '$to' AND status_kirim='Selesai' GROUP BY pemesanan.id_produk")->result();
 		$this->load->view('backend/laporan/all_faktur', $d);
 	}
 
@@ -58,34 +63,37 @@ class Report extends CI_Controller {
         $bulan_ini = date('m');
         $tahun_ini = date('Y');
 
-        if($bulan_ini == '01'){
-            $bulan = "Januari";
-        }else if($bulan_ini == '02'){
-            $bulan = "Februari";
-        }else if($bulan_ini == '03'){
-            $bulan = "Maret";
-        }else if($bulan_ini == '04'){
-            $bulan = "April";
-        }else if($bulan_ini == '05'){
+        if($bulan_ini == '1'){
+            $bulan = "Jan";
+        }else if($bulan_ini == '2'){
+            $bulan = "Feb";
+        }else if($bulan_ini == '3'){
+            $bulan = "Mar";
+        }else if($bulan_ini == '4'){
+            $bulan = "Apr";
+        }else if($bulan_ini == '5'){
             $bulan = "Mei";
-        }else if($bulan_ini == '06'){
-            $bulan = "Juni";
-        }else if($bulan_ini == '07'){
-            $bulan = "Juli";
-        }else if($bulan_ini == '08'){
-            $bulan = "Agustus";
-        }else if($bulan_ini == '09'){
-            $bulan = "September";
+        }else if($bulan_ini == '6'){
+            $bulan = "Jun";
+        }else if($bulan_ini == '7'){
+            $bulan = "Jul";
+        }else if($bulan_ini == '8'){
+            $bulan = "Agst";
+        }else if($bulan_ini == '9'){
+            $bulan = "Sept";
         }else if($bulan_ini == '10'){
-            $bulan = "Oktober";
+            $bulan = "Okt";
         }else if($bulan_ini == '11'){
-            $bulan = "November";
+            $bulan = "Nov";
         }else{
-            $bulan = "Desember";
+            $bulan = "Des";
         }
 		$d['title'] = "Faktur Penjualan Bulan " . $bulan . "-" . $tahun_ini;
-		$d['afaktur'] = $this->db->query("SELECT * FROM produk JOIN pemesanan ON pemesanan.id_produk=produk.id_produk WHERE MONTH(tanggal_pemesanan) = '$bulan_ini' AND status_kirim='Selesai' GROUP BY kode_pemesanan")->result();
-		$this->load->view('backend/report/all_faktur', $d);
+		$d['month'] = $bulan;
+		$d['afaktur'] = $this->db->query("SELECT nama_produk, SUM(qty) AS quty, SUM(total) AS toutal
+		FROM pemesanan
+		JOIN produk ON produk.id_produk=pemesanan.id_produk WHERE MONTH(tanggal_pemesanan) = '$bulan_ini' AND status_kirim='Selesai' GROUP BY pemesanan.id_produk")->result();
+		$this->load->view('backend/laporan/all_faktur_month', $d);
 	}
 
 }

@@ -99,7 +99,7 @@
             </a>
           </div>
           <ul class="sidebar-menu">
-            <li class="menu-header">Main</li>
+            <li class="menu-header">UTAMA</li>
             <li class="dropdown">
               <a href="<?php echo base_url('backend/dashboard'); ?>" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
@@ -114,6 +114,10 @@
             </li>
 			<li class="dropdown">
               <a href="<?php echo base_url('backend/report'); ?>" class="nav-link"><i data-feather="list"></i><span>Laporan</span></a>
+            </li>
+			<li class="menu-header">ADMIN MODE</li>
+			<li class="dropdown">
+              <a href="<?php echo base_url('backend/admin'); ?>" class="nav-link"><i data-feather="user"></i><span>Ruang Admin</span></a>
             </li>
           </ul>
         </aside>

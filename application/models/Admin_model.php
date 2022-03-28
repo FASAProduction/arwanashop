@@ -8,15 +8,15 @@ class Admin_model extends CI_Model {
 	}
 	
 	public function transaction_payed(){
-		return $this->db->query("SELECT * FROM pemesanan WHERE status_bayar='Sudah Bayar'");
+		return $this->db->query("SELECT * FROM pemesanan WHERE status_bayar='Sudah Bayar' GROUP BY kode_pemesanan");
 	}
 	
 	public function transaction_nonpayed(){
-		return $this->db->query("SELECT * FROM pemesanan WHERE status_bayar='Belum Bayar'");
+		return $this->db->query("SELECT * FROM pemesanan WHERE status_bayar='Belum Bayar' GROUP BY kode_pemesanan");
 	}
 	
 	public function transaction(){
-		return $this->db->query("SELECT * FROM pemesanan");
+		return $this->db->query("SELECT * FROM pemesanan GROUP BY kode_pemesanan");
 	}
 	
 	public function customer(){
@@ -24,7 +24,11 @@ class Admin_model extends CI_Model {
 	}
 	
 	public function totalget(){
-		return $this->db->query("SELECT SUM(total) as too FROM pemesanan");
+		return $this->db->query("SELECT SUM(total) as too FROM pemesanan WHERE status_bayar='Sudah Bayar' AND status_kirim='Selesai'");
+	}
+	
+	public function totalgetnonpayed(){
+		return $this->db->query("SELECT SUM(total) as tooa FROM pemesanan WHERE status_bayar='Belum Bayar'");
 	}
 	
 	public function all_orders(){
@@ -49,5 +53,30 @@ class Admin_model extends CI_Model {
 	function productsadd($id_admin,$nama_produk,$hasil,$stok,$harga,$bpic){
 		return $this->db->query("INSERT INTO produk (id_admin,nama_produk,deskripsi,stok,harga,gambar)
 		VALUES ('$id_admin','$nama_produk','$hasil','$stok','$harga','$bpic')");
+	}
+	
+	function penjualan(){
+		$daate = date('m');
+		return $this->db->query("SELECT nama_produk, SUM(total) AS toot
+		FROM pemesanan
+		JOIN produk ON produk.id_produk=pemesanan.id_produk
+		WHERE MONTH(tanggal_pemesanan) = '$daate'
+		GROUP BY pemesanan.id_produk");
+	}
+	
+	function edit_produk($id_produk,$id_admin,$nama_produk,$hasil,$stok,$harga){
+		return $this->db->query("UPDATE produk SET id_admin='$id_admin', nama_produk='$nama_produk', deskripsi='$hasil', stok='$stok', harga='$harga' WHERE id_produk='$id_produk'");
+	}
+	
+	function editpic($id_produk,$bpic){
+		return $this->db->query("UPDATE produk SET gambar='$bpic' WHERE id_produk='$id_produk'");
+	}
+	
+	function stockadd($id_produk, $stok){
+		return $this->db->query("UPDATE produk SET stok=stok+'$stok' WHERE id_produk='$id_produk'");
+	}
+	
+	function del_produk($id_produk){
+		return $this->db->query("DELETE FROM produk WHERE id_produk='$id_produk'");
 	}
 }

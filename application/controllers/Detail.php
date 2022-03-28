@@ -24,5 +24,14 @@ class Detail extends CI_Controller {
 		$this->load->view('detail', $data);
 		$this->load->view('templ/foot');
 	}
+	
+	function add($prod){
+		$pelanggan = $this->session->userdata('ses_id');
+		$qty = "1";
+		$this->db->query("INSERT INTO keranjang (id_pelanggan,id_produk,qty) VALUES ('$pelanggan','$prod','$qty')");
+		$this->session->set_flashdata('yey', '<div class="alert alert-success notif"><center>Ditambahkan Ke Keranjang! <a href="" data-dismiss="true">Oke</a></center></div>');
+		$url = base_url('products');
+		redirect($url);
+	}
 
 }

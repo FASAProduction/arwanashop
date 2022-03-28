@@ -29,7 +29,7 @@
 											if($this->session->userdata('masuk')){
 											?>
 											<div class="snipcart-details top_brand_home_details">
-												<a href="<?php echo base_url('home/add/'); ?><?php echo $pro->id_produk; ?>" class="btn lengk btn-block">Tambahkan Ke Keranjang</a>
+												<a href="<?php echo base_url('products/add/'); ?><?php echo $pro->id_produk; ?>" class="btn lengk btn-block">Tambahkan Ke Keranjang</a>
 											</div>
 											<?php }else{ ?>
 											<div class="snipcart-details top_brand_home_details">

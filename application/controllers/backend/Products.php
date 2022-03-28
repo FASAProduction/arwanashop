@@ -33,7 +33,7 @@ class Products extends CI_Controller {
 		$hasil = "";
 		for ($i=0; $i<=count($pecah)-1; $i++)
 		{
-		   $part = str_replace($pecah[$i], "<p>".$pecah[$i]."</p>", $pecah[$i]);
+		   $part = str_replace($pecah[$i], "".$pecah[$i]."", $pecah[$i]);
 		   $hasil .= $part;
 		}
 		$stok = $this->input->post('stok', TRUE);
@@ -55,8 +55,67 @@ class Products extends CI_Controller {
 			$bpic = $b['gambar']['file_name'];
 			$this->admin->productsadd($id_admin,$nama_produk,$hasil,$stok,$harga,$bpic);
 		}
-	$this->session->set_flashdata('addsuccess', '<div class="col-md-12"><div class="alert alert-success"><b>BERHASIL!</b> Produk sudah ditambahkan. <a href="" data-dismiss="true">Oke</a></div></div>');
+	$this->session->set_flashdata('succ', '<div class="col-md-12"><div class="alert alert-success"><b>BERHASIL!</b> Produk sudah ditambahkan. <a href="" data-dismiss="true">Oke</a></div></div>');
 	redirect('backend/products');
+	}
+	
+	function edit(){
+		$id_produk = $this->input->post('id_produk');
+		$id_admin = $this->session->userdata('ses_id');
+		$nama_produk = $this->input->post('nama_produk', TRUE);
+		$deskripsi = $this->input->post('deskripsi', TRUE);
+		$pecah = explode("\r\n\r\n", $deskripsi);
+		$hasil = "";
+		for ($i=0; $i<=count($pecah)-1; $i++)
+		{
+		   $part = str_replace($pecah[$i], "".$pecah[$i]."", $pecah[$i]);
+		   $hasil .= $part;
+		}
+		$stok = $this->input->post('stok', TRUE);
+		$harga = $this->input->post('harga', TRUE);
+		$this->admin->edit_produk($id_produk,$id_admin,$nama_produk,$hasil,$stok,$harga);
+		$this->session->set_flashdata('succ', '<div class="col-md-12"><div class="alert alert-success"><b>BERHASIL!</b> Produk berhasil diubah. <a href="" data-dismiss="true"><b>Oke</b></a></div></div>');
+		redirect('backend/products');
+	}
+	
+	function picedit(){
+		$id_produk = $this->input->post('id_produk', TRUE);
+		$gambara = $this->input->post('gambara', TRUE);
+		$config['upload_path']          = 'komponen/images/products';
+		$config['allowed_types']        = 'jpg|jpeg|png';
+		$config['gambar']            	= $nama_produk;
+		$config['overwrite']            = true;
+		$config['max_size']             = 6024; // 6MB
+		// $config['max_width']            = 800;
+		// $config['max_height']           = 700;
+
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload('gambar')) {
+			$data['error'] = $this->upload->display_errors();
+		} else {
+			$b = array('gambar' => $this->upload->data());
+			$bpic = $b['gambar']['file_name'];
+			$jalur = 'komponen/images/products'.$gambara;
+			unlink($jalur);
+			$this->admin->editpic($id_produk, $bpic);
+			$this->session->set_flashdata('succ', '<div class="col-md-12"><div class="alert alert-success"><b>BERHASIL!</b> Foto produk berhasil diubah. <a href="" data-dismiss="true"><b>Oke</b></a></div></div>');
+			redirect('backend/products');	
+		}
+	}
+	
+	function addstock(){
+		$id_produk = $this->input->post('id_produk');
+		$stok = $this->input->post('stok');
+		$this->admin->stockadd($id_produk,$stok);
+		$this->session->set_flashdata('succ', '<div class="col-md-12"><div class="alert alert-success"><b>BERHASIL!</b> Stok berhasil ditambahkan. <a href="" data-dismiss="true"><b>Oke</b></a></div></div>');
+		redirect('backend/products');
+	}
+	
+	function del($id_produk){
+		$this->admin->del_produk($id_produk);
+		$this->session->set_flashdata('succ', '<div class="col-md-12"><div class="alert alert-success"><b>BERHASIL!</b> Produk berhasil dihapus. <a href="" data-dismiss="true"><b>Oke</b></a></div></div>');
+		redirect('backend/products');
 	}
 
 }

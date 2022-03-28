@@ -28,7 +28,7 @@
             </td>
             <td style='vertical-align:top' width='30%' align='left'>
                 <b><span style='font-size:15pt'>FAKTUR PENJUALAN</span></b></br>
-                Rentang Tanggal : <b><?php echo format_indo($from); ?> - <?php echo format_indo($to); ?></b></br>
+                Dalam Rentang Waktu : <b>1 Bulan (Bulan <?php echo $month; ?> - <?php echo date('Y'); ?>)</b></br>
             </td>
         </table>
         <hr />

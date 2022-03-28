@@ -23,7 +23,7 @@ foreach($prdct as $dee):
 											?>
 										Deskripsi: <b>Tidak ada deskripsi produk.</b>
 											<?php }else{ ?>
-										Deskripsi: <b><?php echo $dee->deskripsi; ?></b>
+										Deskripsi: <b><span class="bb"><?php echo $dee->deskripsi; ?></span></b>
 											<?php } ?>
 										<hr/>
 										Harga: <b><?php echo rupiah($dee->harga); ?></b>
@@ -31,42 +31,27 @@ foreach($prdct as $dee):
 										Stok: <b><?php echo $dee->stok; ?> Ekor</b>
 							</div>
 						</div>
+						<?php
+						$delet = $dee->id_produk;
+						?>
 						<a href="#edit<?php echo $dee->id_produk; ?>" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="edit<?php echo $dee->id_produk; ?>"><span class="badge badge-success"><i class="fa fa-pencil"></i> Edit Produk</span></a>
 						<a href="#addstock<?php echo $dee->id_produk; ?>" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="addstock<?php echo $dee->id_produk; ?>"><span class="badge badge-success"><i class="fa fa-plus"></i> Tambah Stok</span></a>
-						<a href=""><span class="badge badge-danger"><i class="fa fa-trash"></i> Hapus Produk</span></a>
-					</div>
-					<div class="col-md-6">
-					<?php
-					if($dee->gambar == null){
-					?>
-					<img src="<?php echo base_url(); ?>komponen/images/nophoto.png" class="timbul" />
-					<?php }else{ ?>
-					<img src="<?php echo base_url(); ?>komponen/images/products/<?php echo $dee->gambar; ?>" class="timbul" />
-					<?php } ?>
-					<br/>
-					<br/>
-					<div class="form-group">
-						<label>Ganti Gambar</label>
-						<input type="file" name="gambar" class="form-control" />
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-success btn-block">Ubah</button>
-					</div>
-					<br/>
-					</div>
-					<br/>
-					<br/>
-					<div class="col-md-12 collapse" id="edit<?php echo $dee->id_produk; ?>">
+						<a href="<?php echo base_url('backend/products/del/'); ?><?php echo $delet; ?>"><span class="badge badge-danger"><i class="fa fa-trash"></i> Hapus Produk</span></a>
+						<br/>
+						<br/>
+						<br/>
+						<div class="collapse" id="edit<?php echo $dee->id_produk; ?>">
 						<div class="card">
 							<div class="card-body">
-								<form action="<?php echo base_url('backend/products/edit'); ?>" method="POST" enctype="multipart/form-data">
+								<form action="<?php echo base_url('backend/products/edit'); ?>" method="POST">
+									<input type="hidden" name="id_produk" value="<?php echo $dee->id_produk; ?>" />
 									<div class="form-group">
 										<label>Nama Produk</label>
 										<input type="text" class="form-control" name="nama_produk" value="<?php echo $dee->nama_produk; ?>" required />
 									</div>
 									<div class="form-group">
 										<label>Deskripsi</label>
-										<textarea class="form-control" name="deskripsi" rows="10" required><?php echo $dee->deskripsi; ?></textarea>
+										<textarea class="form-control bb" name="deskripsi" rows="10" required><?php echo $dee->deskripsi; ?></textarea>
 									</div>
 									<div class="form-group">
 										<label>Stok</label>
@@ -77,23 +62,20 @@ foreach($prdct as $dee):
 										<input type="number" class="form-control" name="harga" value="<?php echo $dee->harga; ?>" required />
 									</div>
 									<div class="form-group">
-										<label>Gambar Produk</label>
-										<input type="file" class="form-control" name="gambar" accept="image/png, image/jpeg, image/jpg" required />
-									</div>
-									<div class="form-group">
-										<button type="submit" class="btn btn-success btn-block">Edit</button>
+										<button type="submit" class="btn btn-success btn-block">Ubah data produk</button>
 									</div>
 								</form>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-12 collapse" id="addstock<?php echo $dee->id_produk; ?>">
+					<div class="collapse" id="addstock<?php echo $dee->id_produk; ?>">
 						<div class="card">
 							<div class="card-body">
 								<form action="<?php echo base_url('backend/products/addstock'); ?>" method="POST" enctype="multipart/form-data">
+									<input type="hidden" name="id_produk" value="<?php echo $dee->id_produk; ?>" />
 									<div class="form-group">
 										<label>Nama Produk</label>
-										<input type="text" class="form-control" name="nama_produk" value="<?php echo $dee->nama_produk; ?>" readonly />
+										<input type="text" class="form-control" value="<?php echo $dee->nama_produk; ?>" readonly />
 									</div>
 									<div class="form-group">
 										<label>Stok Saat Ini</label>
@@ -110,6 +92,31 @@ foreach($prdct as $dee):
 							</div>
 						</div>
 					</div>
+					</div>
+					<div class="col-md-6">
+					<?php
+					if($dee->gambar == null){
+					?>
+					<img src="<?php echo base_url(); ?>komponen/images/nophoto.png" class="timbul" />
+					<?php }else{ ?>
+					<img src="<?php echo base_url(); ?>komponen/images/products/<?php echo $dee->gambar; ?>" class="timbul" />
+					<?php } ?>
+					<br/>
+					<br/>
+					<form action="<?php echo base_url('backend/products/picedit'); ?>" method="POST" enctype="multipart/form-data">
+						<input type="hidden" name="id_produk" value="<?php echo $dee->id_produk; ?>" />
+						<input type="hidden" name="gambara" value="<?php echo $dee->gambar; ?>" />
+						<div class="form-group">
+							<label>Ganti Gambar</label>
+							<input type="file" name="gambar" class="form-control" />
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-success btn-block">Ubah foto produk</button>
+						</div>
+					</form>
+					<br/>
+					</div>
+					<br/>
 				</div>
               </div>
             </div>

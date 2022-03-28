@@ -14,8 +14,11 @@ $e = $det->id_produk;
 <!-- //breadcrumbs -->
 	<div class="products">
 		<div class="container">
+			<center><h2>DETAIL PRODUK</h2></center>
+			<hr/>
+			<br/>
+			<br/>
 			<div class="agileinfo_single">
-				
 				<div class="col-md-4 agileinfo_single_left">
 				<?php
 				if($det->gambar == null){
@@ -26,17 +29,27 @@ $e = $det->id_produk;
 				<?php } ?>
 				</div>
 				<div class="col-md-8 agileinfo_single_right">
+				<?php
+						if($det->stok > 0 && $det->stok <= 5){
+						?>
+						<span class="badge warning">Tinggal 5 ekor!</span>
+						<?php
+						}else if($det->stok > 5){
+						?>
+						<span class="badge success">Tersedia</span>
+						<?php }else{ ?>
+						<span class="badge danger">Habis</span>
+						<?php } ?>
 				<h2><?php echo $det->nama_produk; ?></h2>
 					<div class="w3agile_description">
 						<h4>Deskripsi Produk :</h4>
 						<?php
 						if($det->deskripsi == null){
 						?>
-						<p>Tidak ada deskripsi.</p>
-						<?php }else {
-							echo $det->deskripsi; 
-						}
-						?>
+						<p class="bebe">Tidak ada deskripsi.</p>
+						<?php }else { ?>
+						<p class="bebe"><?php echo $det->deskripsi; ?></p>
+						<?php } ?>
 					</div>
 					<div class="snipcart-item block">
 						<div class="snipcart-thumb agileinfo_single_right_snipcart">
@@ -46,7 +59,13 @@ $e = $det->id_produk;
 											if($this->session->userdata('masuk')){
 											?>
 											<div class="snipcart-details top_brand_home_details">
-												<a href="<?php echo base_url('home/add/'); ?><?php echo $det->id_produk; ?>" class="btn lengku">Tambahkan Ke Keranjang</a>
+												<?php
+												if($det->stok > 0){
+												?>
+												<a href="<?php echo base_url('products/add/'); ?><?php echo $det->id_produk; ?>" class="btn lengku">Tambahkan Ke Keranjang</a>
+												<?php }else{ ?>
+												<a class="btn lengku">Tambahkan Ke Keranjang</a>
+												<?php } ?>
 											</div>
 											<?php }else{ ?>
 											<div class="snipcart-details top_brand_home_details">

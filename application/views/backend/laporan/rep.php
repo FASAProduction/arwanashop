@@ -10,6 +10,11 @@
 				<div class="card">
 					<div class="card-header">
 						<h4>Filter</h4>
+						<div class="card-header-action">
+                      <a href="<?php echo base_url('backend/report/fakturmonth'); ?>" class="btn btn-success">
+                        <i class="fa fa-file-pdf"></i> Cetak faktur bulan ini
+                      </a>
+                    </div>
 					</div>
 					<div class="card-body">
 						<form action="<?php echo base_url('backend/report/filter'); ?>" method="POST">

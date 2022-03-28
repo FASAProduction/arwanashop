@@ -25,8 +25,13 @@ class Home extends CI_Controller {
 	
 	function add($prod){
 		$pelanggan = $this->session->userdata('ses_id');
+		$c = $this->query("SELECT * FROM keranjang WHERE id_produk='$prod'")->row_array();
 		$qty = "1";
+		if($c['id_produk']==$prod){
+		$this->db->query("UPDATE keranjang SET qty=qty + '$qty' WHERE id_produk='$prod'");
+		}else{
 		$this->db->query("INSERT INTO keranjang (id_pelanggan,id_produk,qty) VALUES ('$pelanggan','$prod','$qty')");
+		}
 		$this->session->set_flashdata('yey', '<div class="alert alert-success notif"><center>Ditambahkan Ke Keranjang! <a href="" data-dismiss="true">Oke</a></center></div>');
 		$url = base_url();
 		redirect($url);
