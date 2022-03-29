@@ -179,3 +179,7 @@
 .warning{
 	background-color: #ffe300;
 }
+
+.inp{
+	border-radius: 15px 15px;
+}

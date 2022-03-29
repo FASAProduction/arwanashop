@@ -36,7 +36,7 @@
 <!-- start-smoth-scrolling -->
 </head>
 	
-<body>
+<body style="background: url('<?php echo base_url(); ?>komponen/images/backgr.jpg'); background-position: center 324px; background-repeat: no-repeat;">
 <!-- header -->
 	<div class="agileits_header">
 		<div class="container">

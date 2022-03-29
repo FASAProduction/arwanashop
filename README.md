@@ -2,6 +2,7 @@
 
 
 __To use it, you must install Apache and SQL.__
+__If you using XAMPP, this project is for XAMPP Ver 7 only. If you use XAMPP above from requirement version, add this syntax: > #[\ReturnTypeWillChange] . __
 
 *How to use:*
 

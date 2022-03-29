@@ -21,6 +21,17 @@
 				<img src="<?php echo base_url(); ?>komponen/images/nophoto.png" width="100%" style="border-radius: 50%; box-shadow: 0px 0px 1px 5px #e8e8e8;" />
 				<br/>
 				<br/>
+				<form>
+					<div class="form-group">
+						<label>Ubah foto profil</label>
+						<input type="file" class="form-control inp" name="pic" required />
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn lengk btn-block">Ubah</button>
+					</div>
+				</form>
+				<br/>
+				<br/>
 				<div class="card" style="border-radius: 20px 20px; background-color: #fff; padding: 24px 9px 33px 23px; box-shadow: 0px 0px 0px 1px #e8e8e8;">
 					<div class="card-header">
 					<h2>Informasi Akun</h2>
@@ -39,7 +50,7 @@
 						<br/>
 						<small>Nomor HP</small>
 						<br/>
-						<h4><?php echo $pelanggan['no_hp']; ?></h4>
+						<h4>+62<?php echo substr($pelanggan['no_hp'],1); ?></h4>
 						<br/>
 					</div>
 				</div>
@@ -53,21 +64,31 @@
 					<br/>
 					<br/>
 						<form>
-							<div class="form-group">
-							<label>Nama Tampilan</label>
-							<input type="text" name="nama_lengkap" value="<?php echo $pelanggan['nama_lengkap']; ?>" class="form-control inp" />
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+									<label>Nama Tampilan</label>
+									<input type="text" name="nama_lengkap" value="<?php echo $pelanggan['nama_lengkap']; ?>" class="form-control inp" required />
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+									<label>Nama Pengguna</label>
+									<input type="text" name="username" value="<?php echo $pelanggan['username']; ?>" class="form-control inp" required />
+									</div>
+								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Alamat</label>
-										<textarea name="alamat" class="form-control inp bebe"><?php echo $pelanggan['alamat']; ?></textarea>
+										<textarea name="alamat" class="form-control inp bebe" required ><?php echo $pelanggan['alamat']; ?></textarea>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Provinsi</label>
-										<select class="form-control inp" name="id_provinsi">
+										<select class="form-control inp" name="id_provinsi" required>
 										<option value="<?php echo $pelanggan['id_provinsi']; ?>"><?php echo $pelanggan['nama_provinsi']; ?> [Dipilih]</option>
 										<?php
 										$currentprov = $pelanggan['id_provinsi'];
@@ -79,6 +100,33 @@
 										</select>
 									</div>
 								</div>
+							</div>
+							<div class="form-group">
+								<label>Nomor HP</label>
+								<input type="number" name="no_hp" value="<?php echo $pelanggan['no_hp']; ?>" class="form-control inp" required />
+							</div>
+							<div class="form-group">
+								<button class="btn lengk btn-block" type="submit">Ubah Akun</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<br/>
+				<br/>
+				<div class="card" style="border-radius: 20px 20px; background-color: #f7f7f7; padding: 24px 9px 33px 23px;">
+					<div class="card-header">
+					<h2>Settings</h2>
+					</div>
+					<div class="card-body">
+					<br/>
+					<br/>
+						<form>
+							<div class="form-group">
+								<label>Password</label>
+								<input type="password" name="password" class="form-control inp" placeholder="Masukkan password baru Anda. Kosongkan jika tidak ingin mengganti." required />
+							</div>
+							<div class="form-group">
+								<button class="btn lengk btn-block" type="submit">Ubah Password</button>
 							</div>
 						</form>
 					</div>

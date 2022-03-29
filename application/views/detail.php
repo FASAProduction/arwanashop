@@ -79,6 +79,7 @@ $e = $det->id_produk;
 		</div>
 	</div>
 <!-- new -->
+	<hr/>
 	<div class="newproducts-w3agile">
 		<div class="container">
 			<h3>Produk Lainnya</h3>
