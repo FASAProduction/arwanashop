@@ -79,4 +79,10 @@ class Admin_model extends CI_Model {
 	function del_produk($id_produk){
 		return $this->db->query("DELETE FROM produk WHERE id_produk='$id_produk'");
 	}
+	
+	function detorder($codo){
+		return $this->db->query("SELECT * FROM pemesanan
+		JOIN produk ON produk.id_produk=pemesanan.id_produk
+		WHERE kode_pemesanan='$codo'");
+	}
 }

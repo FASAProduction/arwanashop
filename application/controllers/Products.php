@@ -14,7 +14,7 @@ class Products extends CI_Controller {
         $head['judul'] = 'Products - Arwana Store';
 		$cst = $this->session->userdata('ses_id');
 		$head['cust'] = $this->db->query("SELECT * FROM pelanggan WHERE id_pelanggan='$cst'")->result();
-		$head['cart'] = $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk=keranjang.id_produk WHERE id_pelanggan='$cst'")->row_array();
+		$head['cart'] = $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk=keranjang.id_produk WHERE id_pelanggan='$cst'")->result_array();
         $head['krjg'] = $this->db->query("SELECT * FROM keranjang WHERE id_pelanggan='$cst'")->num_rows();
 		$data['p'] = $this->produk->product()->result();
 		$data['pc'] = $this->produk->product()->num_rows();

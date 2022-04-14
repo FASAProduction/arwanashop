@@ -83,7 +83,7 @@
                         <br />
                         <br />
                         <a href="<?php echo base_url('cart/checkout'); ?>"
-                            class="btn btn-success btn-block">Checkout</a>
+                            class="btn lengk btn-block">Checkout</a>
                     </div>
                 </div>
             </div>

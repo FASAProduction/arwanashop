@@ -51,24 +51,41 @@
           <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
               class="nav-link nav-link-lg message-toggle"><i data-feather="bell"></i>
               <span class="badge headerBadge1">
-                0 </span> </a>
+                <?php echo $orderan; ?> </span> </a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
               <div class="dropdown-header">
-                Notifikasi
+                <?php
+				if($orderan > 0){
+					echo "" . $orderan . " Pesanan baru!";
+				}else{
+					echo "Tidak ada pesanan baru.";
+				}
+				?>
                 
               </div>
               <div class="dropdown-list-content dropdown-list-message">
-                <a href="#" class="dropdown-item">
-				<span class="dropdown-item-desc"> <span class="message-user">John
-                      Deo</span>
-                    <span class="time messege-text">Please check your mail !!</span>
-                    <span class="time">2 Min Ago</span>
-                  </span>
-                </a>
-				----
+				<?php
+				foreach($listorderan as $lo):
+				$cd = $lo->kode_pemesanan;
+				$brght = $this->db->query("SELECT * FROM pemesanan JOIN produk ON produk.id_produk=pemesanan.id_produk WHERE kode_pemesanan='$cd'")->num_rows();
+				?>
+					<a href="<?php echo base_url('backend/orders/details/'); ?><?php echo $cd; ?>" class="dropdown-item">
+					<span class="dropdown-item-desc"> 
+					<?php
+					if($brght > 1){
+					?>
+					<span class="message-user"><?php echo $brght; ?> Item</span>
+					<?php }else{ ?>
+					<span class="message-user"><?php echo $lo->nama_produk; ?> (x<?php echo $lo->qty; ?>)</span>
+					<?php } ?>
+						<span class="time messege-text"><?php echo $lo->nama_lengkap; ?></span>
+						<span class="time"><?php echo format_indo($lo->tanggal_pemesanan); ?></span>
+					  </span>
+					</a>
+				<?php endforeach; ?>
               </div>
               <div class="dropdown-footer text-center">
-                <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+                <a href="<?php echo base_url('backend/orders'); ?>">Lihat Semua <i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
           </li>

@@ -64,7 +64,7 @@ class Cart extends CI_Controller {
 			'tanggal_pemesanan' => $tgl,
 			'total' => $harga * $qty,
 			'status_bayar' => "Belum Bayar",
-			'status_kirim' => "Dikemas",
+			'status_kirim' => "Menunggu Pembayaran",
 			));
 		
 			$index++;

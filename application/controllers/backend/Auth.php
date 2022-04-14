@@ -21,8 +21,8 @@ class Auth extends CI_Controller {
         $cek=$this->admin->data_login($username,$password);
                     if($cek->num_rows() > 0){
                             $data=$cek->row_array();
-                    $this->session->set_userdata('masuk',TRUE);
-                            $this->session->set_userdata('ses_id',$data['id_admin']);
+                    $this->session->set_userdata('enter',TRUE);
+                            $this->session->set_userdata('adm_id',$data['id_admin']);
 							$url = base_url('backend/dashboard');
                             redirect($url);
                     }else{  // jika username dan password tidak ditemukan atau salah

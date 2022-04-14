@@ -6,6 +6,33 @@
 			<br/>
 			<div class="row">
                 <div class="col-md-8">
+				<?php
+				if($detaila['status_kirim'] == "Dikirim"){
+				?>
+					<div class="card bg">
+						<div class="card-body">
+							<font size="5">Status Pengiriman</font>
+							<br/>
+							<br/>
+							Pesanan Anda sedang dalam perjalanan.
+							<br/>
+							<br/>
+							Dikirim dari:
+							<br/>
+							<b>
+							Jl. Mungguk Batu, Selimbau, Kalimantan Barat, Indonesia 78765
+							</b>
+							<br/>
+							<br/>
+							<i class="fa fa-arrow-down"></i>
+							<br/>
+							<br/>
+							<b>
+							<?php echo $custm['alamat']; ?>, <?php echo $custm['nama_provinsi']; ?>
+							</b>
+						</div>
+					</div>
+				<?php }else {} ?>
                     <div class="card bg">
                         <div class="card-body">
                             <?php

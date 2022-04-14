@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Mar 2022 pada 15.11
+-- Waktu pembuatan: 12 Apr 2022 pada 17.14
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.10
 
@@ -54,15 +54,6 @@ CREATE TABLE `keranjang` (
   `qty` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `keranjang`
---
-
-INSERT INTO `keranjang` (`id_keranjang`, `id_pelanggan`, `id_produk`, `qty`) VALUES
-(35, 2, 15, 2),
-(36, 2, 13, 1),
-(37, 2, 11, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -84,7 +75,7 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `username`, `password`, `nama_lengkap`, `alamat`, `id_provinsi`, `no_hp`) VALUES
-(2, 'fazal', '849b0a7dcb9fd41b44d08923b270e9132f42a241', 'Fazal Said', 'Everywhere', 65, '082233439041');
+(7, 'demo', '89e495e7941cf9e40e6980d14a16bf023ccd4c91', 'Demo Akun', 'No address', 64, '083495039485');
 
 -- --------------------------------------------------------
 
@@ -101,18 +92,10 @@ CREATE TABLE `pemesanan` (
   `tanggal_pemesanan` date NOT NULL,
   `total` int(10) NOT NULL,
   `status_bayar` varchar(15) NOT NULL,
-  `status_kirim` varchar(15) NOT NULL,
+  `status_kirim` varchar(20) NOT NULL,
   `metode_bayar` varchar(30) NOT NULL,
   `bukti` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `pemesanan`
---
-
-INSERT INTO `pemesanan` (`id_pemesanan`, `kode_pemesanan`, `id_pelanggan`, `id_produk`, `qty`, `tanggal_pemesanan`, `total`, `status_bayar`, `status_kirim`, `metode_bayar`, `bukti`) VALUES
-(27, 'TR-ARW0001', 2, 12, 2, '2022-03-25', 2800000, 'Belum Bayar', 'Selesai', '', ''),
-(28, 'TR-ARW0001', 2, 10, 3, '2022-03-25', 6900000, 'Belum Bayar', 'Selesai', '', '');
 
 -- --------------------------------------------------------
 
@@ -136,15 +119,15 @@ CREATE TABLE `produk` (
 
 INSERT INTO `produk` (`id_produk`, `id_admin`, `nama_produk`, `deskripsi`, `stok`, `harga`, `gambar`) VALUES
 (6, 1, 'Arwana Partai', 'Ukuran: 25 cm', 50, 1500000, '1648223255594.jpg'),
-(7, 1, 'Arwana Cabai Merah', 'Ukuran: 30 cm', 30, 2000000, '1648223255643.jpg'),
-(8, 1, 'Arwana Semi Spesial', '<p>Ukuran 35 cm</p>', 16, 1300000, '1648223255698.jpg'),
-(9, 1, 'Arwana Spesial', '<p>Ukuran 30cm</p>', 20, 2500000, '1648223255750.jpg'),
-(10, 1, 'Arwana Metalk', '<p>Ukuran 27cm</p>', 17, 2300000, '1648223255795.jpg'),
-(11, 1, 'Arwana Ekor Kipas', '<p>Ukuran 22 cm</p>', 20, 2800000, '1648223255837.jpg'),
-(12, 1, 'Arwana Semi Short Body', '<p>Ukuran: 17 cm</p>', 20, 1400000, '1648223255875.jpg'),
-(13, 1, 'Arwana Dayang Setan', '<p>Ukuran: 35 cm</p>', 20, 2600000, '1648223255915.jpg'),
-(14, 1, 'Arwana Semi Punuk Unta', '<p>Ukuran: 33 cm</p>', 20, 2500000, '1648223255965.jpg'),
-(15, 1, 'Arwana Punuk Unta', '<p>Ukuran: 20 cm</p>', 20, 2400000, '1648223256006.jpg');
+(7, 1, 'Arwana Cabai Merah', 'Ukuran: 30 cm', 50, 2000000, '1648223255643.jpg'),
+(8, 1, 'Arwana Semi Spesial', 'Ukuran 35 cm', 50, 1300000, '1648223255698.jpg'),
+(9, 1, 'Arwana Spesial', '<p>Ukuran 30cm</p>', 50, 2500000, '1648223255750.jpg'),
+(10, 1, 'Arwana Metalk', 'Ukuran 27cm', 50, 2300000, '1648223255795.jpg'),
+(11, 1, 'Arwana Ekor Kipas', 'Ukuran 22 cm', 50, 2800000, '1648223255837.jpg'),
+(12, 1, 'Arwana Semi Short Body', 'Ukuran: 17 cm', 50, 1400000, '1648223255875.jpg'),
+(13, 1, 'Arwana Dayang Setan', 'Ukuran: 35 cm', 50, 2600000, '1648223255915.jpg'),
+(14, 1, 'Arwana Semi Punuk Unta', 'Ukuran: 33 cm', 50, 2500000, '1648223255965.jpg'),
+(15, 1, 'Arwana Punuk Unta', 'Ukuran: 20 cm', 50, 2400000, '1648223256006.jpg');
 
 -- --------------------------------------------------------
 
@@ -222,19 +205,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id_keranjang` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_keranjang` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT untuk tabel `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pelanggan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_pemesanan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`

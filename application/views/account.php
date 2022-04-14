@@ -56,6 +56,7 @@
 				</div>
 			</div>
 			<div class="col-md-8">
+				<?php echo $this->session->flashdata('go'); ?>
 				<div class="card" style="border-radius: 20px 20px; background-color: #f7f7f7; padding: 24px 9px 33px 23px;">
 					<div class="card-header">
 					<h2>Ubah Info Akun</h2>
@@ -63,7 +64,8 @@
 					<div class="card-body">
 					<br/>
 					<br/>
-						<form>
+						<form action="<?php echo base_url('my/profilechange'); ?>" method="POST">
+							<input type="hidden" value="<?php echo $pelanggan['id_pelanggan']; ?>" name="id_pelanggan" />
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
@@ -74,7 +76,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 									<label>Nama Pengguna</label>
-									<input type="text" name="username" value="<?php echo $pelanggan['username']; ?>" class="form-control inp" required />
+									<input type="text" name="username" value="<?php echo $pelanggan['username']; ?>" class="form-control inp" readonly />
 									</div>
 								</div>
 							</div>
@@ -123,7 +125,8 @@
 						<form>
 							<div class="form-group">
 								<label>Password</label>
-								<input type="password" name="password" class="form-control inp" placeholder="Masukkan password baru Anda. Kosongkan jika tidak ingin mengganti." required />
+								<input type="password" id="pass" name="password" class="form-control inp" placeholder="Masukkan password baru Anda. Kosongkan jika tidak ingin mengganti." required />
+								<div id="ceklek" onclick="tunjukkanPass();"><i class="fa fa-eye fa-2x" id="mata"></i></div>
 							</div>
 							<div class="form-group">
 								<button class="btn lengk btn-block" type="submit">Ubah Password</button>
@@ -138,3 +141,35 @@
 		<br/>
 	</div>
 <!-- //new -->
+<?php
+if($this->session->userdata('masuk')){
+	if($krjg > 0){
+		$total = 0;
+		foreach($cart as $crt){
+			$subtotal = $crt['harga'] * $crt['qty'];
+			$total += $subtotal;
+		}
+?>
+<a href="<?php echo base_url('cart'); ?>">
+	<div class="keranjang">
+		<i class="fa fa-shopping-cart"></i> <?php echo $krjg; ?> Item (<?php echo rupiah($total); ?>) <i class="fa fa-arrow-right"></i>
+	</div>
+</a>
+	<?php }else{}
+}	
+?>
+<script type="text/javascript">
+            const password = document.getElementById('pass');
+            const toggle = document.getElementById('ceklek');
+			const kelas = document.getElementById('mata');
+            
+            function tunjukkanPass(){
+                if(password.type === 'password'){
+                    password.setAttribute('type', 'text');
+					kelas.setAttribute('class', 'fa fa-eye-slash fa-2x');
+                } else{
+                    password.setAttribute('type', 'password');
+					kelas.setAttribute('class', 'fa fa-eye fa-2x');
+                }
+            }
+        </script>

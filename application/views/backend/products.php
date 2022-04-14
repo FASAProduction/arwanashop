@@ -84,6 +84,7 @@
 							$juala = $this->db->query("SELECT nama_produk, SUM(qty) AS toot
 								FROM pemesanan
 								JOIN produk ON produk.id_produk=pemesanan.id_produk
+								WHERE status_kirim='Selesai'
 								GROUP BY pemesanan.id_produk")->result();
 							?>
 							<div class="col-md-6">
@@ -118,6 +119,7 @@
 								$jual = $this->db->query("SELECT nama_produk, SUM(qty) AS toot
 								FROM pemesanan
 								JOIN produk ON produk.id_produk=pemesanan.id_produk
+								WHERE status_kirim='Selesai'
 								GROUP BY pemesanan.id_produk")->result();
 								$nama_produk= "";
 								$jumlah=null;

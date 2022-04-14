@@ -15,9 +15,11 @@ class Detail extends CI_Controller {
     }
 	
 	function product($pr){
-		$head['judul'] = 'Detail - Arwana Store';
+		$prd = $this->db->query("SELECT * FROM produk WHERE id_produk='$pr'")->row_array();
+		$head['judul'] = $prd['nama_produk'] . ' - Arwana Store';
 		$cst = $this->session->userdata('ses_id');
 		$head['cust'] = $this->db->query("SELECT * FROM pelanggan WHERE id_pelanggan='$cst'")->result();
+		$head['cart'] = $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk=keranjang.id_produk WHERE id_pelanggan='$cst'")->result_array();
 		$head['krjg'] = $this->db->query("SELECT * FROM keranjang WHERE id_pelanggan='$cst'")->num_rows();
 		$data['dp'] = $this->produk->product_detail($pr)->result();
 		$this->load->view('templ/head', $head);

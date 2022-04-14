@@ -20,5 +20,9 @@ class Pelanggan_model extends CI_Model {
 		ON provinsi.id_provinsi=pelanggan.id_provinsi
 		WHERE id_pelanggan='$cuss'");
 	}
+	
+	function profile($id_pelanggan,$nama_lengkap,$username,$alamat,$id_provinsi,$no_hp){
+		return $this->db->query("UPDATE pelanggan SET nama_lengkap='$nama_lengkap', username='$username', alamat='$alamat', id_provinsi='$id_provinsi', no_hp='$no_hp' WHERE id_pelanggan='$id_pelanggan'");
+	}
 
 }

@@ -35,9 +35,28 @@
 							<b><font size="4"><?php echo rupiah($total); ?></font></b>
 							<br/>
 							<br/>
-							<small>Status Bayar</small>
+							<small>Status Pembayaran</small>
 							<br/>
-							<b><font size="4"><?php echo $ca->status_bayar; ?></font></b>
+							<?php
+							if($ca->status_bayar == "Belum Bayar"){
+							?>
+							<span class="badge danger"><b><font size="4"><?php echo $ca->status_bayar; ?></font></b></span>
+							<?php }else{ ?>
+							<span class="badge success"><b><font size="4"><?php echo $ca->status_bayar; ?></font></b></span>
+							<?php } ?>
+							<br/>
+							<br/>
+							<small>Status Pengiriman</small>
+							<br/>
+							<?php
+							if($ca->status_kirim == "Dikemas"){
+							?>
+							<span class="badge info"><b><font size="4"><?php echo $ca->status_kirim; ?></font></b></span>
+							<?php }else if($ca->status_kirim == "Dikirim"){ ?>
+							<span class="badge warning"><b><font size="4"><?php echo $ca->status_kirim; ?></font></b></span>
+							<?php }else{ ?>
+							<span class="badge success"><b><font size="4"><?php echo $ca->status_kirim; ?></font></b></span>
+							<?php } ?>
 							<hr/>
 							<a href="<?php echo base_url('order/detail/'); ?><?php echo $ca->kode_pemesanan; ?>" class="btn lengk btn-block">Details</a>
 							<br/>
@@ -55,7 +74,7 @@
 							Anda tidak memesan apapun.
 							<br/>
 							<br/>
-							<a href="" class="btn lengk">Belanja Sekarang</a>
+							<a href="<?php echo base_url('products'); ?>" class="btn lengk">Belanja Sekarang</a>
 							</center>
 						</div>
 					</div>
@@ -65,3 +84,20 @@
 		</div>
 	</div>
 <!-- //new -->
+<?php
+if($this->session->userdata('masuk')){
+	if($krjg > 0){
+		$total = 0;
+		foreach($cart as $crt){
+			$subtotal = $crt['harga'] * $crt['qty'];
+			$total += $subtotal;
+		}
+?>
+<a href="<?php echo base_url('cart'); ?>">
+	<div class="keranjang">
+		<i class="fa fa-shopping-cart"></i> <?php echo $krjg; ?> Item (<?php echo rupiah($total); ?>) <i class="fa fa-arrow-right"></i>
+	</div>
+</a>
+	<?php }else{}
+}	
+?>

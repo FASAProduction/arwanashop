@@ -97,3 +97,12 @@
 	white-space: pre-wrap;
 	word-wrap: break-word;
 }
+
+.bdg{
+	color: #fff;
+}
+
+.bdg:hover{
+	background-color: #000;
+	color: #fff;
+}

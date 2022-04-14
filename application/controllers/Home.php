@@ -14,7 +14,7 @@ class Home extends CI_Controller {
         $head['judul'] = 'Arwana Store';
 		$cst = $this->session->userdata('ses_id');
 		$head['cust'] = $this->db->query("SELECT * FROM pelanggan WHERE id_pelanggan='$cst'")->result();
-		$head['cart'] = $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk=keranjang.id_produk WHERE id_pelanggan='$cst'")->row_array();
+		$head['cart'] = $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk=keranjang.id_produk WHERE id_pelanggan='$cst'")->result_array();
         $head['krjg'] = $this->db->query("SELECT * FROM keranjang WHERE id_pelanggan='$cst'")->num_rows();
 		$data['p'] = $this->produk->product_limit()->result();
 		$data['pc'] = $this->produk->product_limit()->num_rows();
@@ -25,7 +25,7 @@ class Home extends CI_Controller {
 	
 	function add($prod){
 		$pelanggan = $this->session->userdata('ses_id');
-		$c = $this->query("SELECT * FROM keranjang WHERE id_produk='$prod'")->row_array();
+		$c = $this->db->query("SELECT * FROM keranjang WHERE id_produk='$prod'")->row_array();
 		$qty = "1";
 		if($c['id_produk']==$prod){
 		$this->db->query("UPDATE keranjang SET qty=qty + '$qty' WHERE id_produk='$prod'");

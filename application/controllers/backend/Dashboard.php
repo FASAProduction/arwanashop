@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller {
         $this->load->model('admin_model', 'admin');
 		$this->load->helper('rupiah_helper');
 		$this->load->helper('tanggal_helper');
-		if($this->session->userdata('masuk') != TRUE){
+		if($this->session->userdata('enter') != TRUE){
 			redirect('backend');
 		}
     }
@@ -16,8 +16,13 @@ class Dashboard extends CI_Controller {
     public function index()
 	{
                 $head['judul'] = "Backend Dashboard - Arwana Store";
-				$adm = $this->session->userdata('ses_id');
+				$adm = $this->session->userdata('adm_id');
 				$head['admn'] = $this->db->query("SELECT * FROM admin WHERE id_admin='$adm'")->row_array();
+				$head['orderan'] = $this->db->query("SELECT * FROM pemesanan WHERE status_bayar='Belum Bayar' GROUP BY kode_pemesanan")->num_rows();
+				$head['listorderan'] = $this->db->query("SELECT * FROM pemesanan
+				JOIN produk ON produk.id_produk=pemesanan.id_produk
+				JOIN pelanggan ON pelanggan.id_pelanggan=pemesanan.id_pelanggan
+				WHERE status_bayar='Belum Bayar' GROUP BY kode_pemesanan")->result();
 				$data['admn'] = $this->db->query("SELECT * FROM admin WHERE id_admin='$adm'")->row_array();
 				$data['transpayed'] = $this->admin->transaction_payed()->num_rows();
 				$data['transnonpayed'] = $this->admin->transaction_nonpayed()->num_rows();

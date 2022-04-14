@@ -57,10 +57,6 @@
 					<ul>
 						<li><a href="<?php echo base_url('my'); ?>"><?php echo $e['username']; ?></a></li>
 						<li><a href="<?php echo base_url('auth/logout'); ?>">Keluar</a></li>
-						<li>
-							<a href="<?php echo base_url('cart'); ?>"><i class="fa fa-shopping-cart"></i></a>
-							<span class="bulet"><?php echo $krjg; ?></span>
-						</li>
 					</ul>
 				<?php }else{ ?>
 					<ul>
@@ -79,10 +75,6 @@
 					<ul>
 						<li><a href="<?php echo base_url('my'); ?>"><?php echo $e['username']; ?></a></li>
 						<li><a href="<?php echo base_url('auth/logout'); ?>">Keluar</a></li>
-						<li>
-							<a href="<?php echo base_url('cart'); ?>"><i class="fa fa-shopping-cart"></i></a>
-							<span class="bulet"><?php echo $krjg; ?></span>
-						</li>
 					</ul>
 				<?php }else{ ?>
 					<ul>
@@ -109,8 +101,8 @@
 				</a></h1>
 			</div>
 		<div class="w3l_search">
-			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
+			<form action="<?php echo base_url('search/q'); ?>" method="POST">
+				<input type="search" name="keyword" placeholder="Cari ikan arwana jenis apa?" required >
 				<button type="submit" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>

@@ -95,9 +95,9 @@ $e = $det->id_produk;
 									<?php
 									if($r->gambar == null){
 									?>
-									<img title="<?php echo $r->nama_produk; ?>" alt="<?php echo $r->nama_produk; ?>" src="<?php echo base_url(); ?>komponen/images/nophoto.png" width="100%">
+									<img title="<?php echo $r->nama_produk; ?>" alt="<?php echo $r->nama_produk; ?>" src="<?php echo base_url(); ?>komponen/images/nophoto.png" style="width: 100%; border-radius: 15px 15px;">
 									<?php }else{ ?>
-									<img title="<?php echo $r->nama_produk; ?>" alt="<?php echo $r->nama_produk; ?>" src="<?php echo base_url(); ?>komponen/images/products/<?php echo $r->gambar; ?>" width="100%">
+									<img title="<?php echo $r->nama_produk; ?>" alt="<?php echo $r->nama_produk; ?>" src="<?php echo base_url(); ?>komponen/images/products/<?php echo $r->gambar; ?>" style="width: 100%; height: 150px; border-radius: 15px 15px; margin: 0px 0px 0px -9px;">
 									<?php } ?>
 									</a>
 									<br/>
@@ -126,4 +126,22 @@ $e = $det->id_produk;
 		</div>
 	</div>
 <!-- //new -->
-<?php endforeach; ?>
+<?php
+if($this->session->userdata('masuk')){
+	if($krjg > 0){
+		$total = 0;
+		foreach($cart as $crt){
+			$subtotal = $crt['harga'] * $crt['qty'];
+			$total += $subtotal;
+		}
+?>
+<a href="<?php echo base_url('cart'); ?>">
+	<div class="keranjang">
+		<i class="fa fa-shopping-cart"></i> <?php echo $krjg; ?> Item (<?php echo rupiah($total); ?>) <i class="fa fa-arrow-right"></i>
+	</div>
+</a>
+	<?php }else{}
+}	
+
+endforeach;
+?>

@@ -2,10 +2,10 @@
 	<div class="newproducts-w3agile">
 		<div class="container">
 			<?php echo $this->session->flashdata('yey'); ?>
-			<h3>Semua Produk</h3>
+			<h3>Hasil pencarian '<?php echo $kunci; ?>'</h3>
 				<div class="agile_top_brands_grids">
 				<?php
-				foreach($p as $pro):
+				foreach($hasilcari as $pro):
 				?>
 					<div class="col-md-3 col-lg-3 col-sm-3">
 						<div class="card bg">

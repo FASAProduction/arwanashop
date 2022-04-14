@@ -22,6 +22,7 @@ class Order extends CI_Controller {
         $head['judul'] = 'My Orders - Arwana Store';
 		$cst = $this->session->userdata('ses_id');
 		$head['cust'] = $this->db->query("SELECT * FROM pelanggan WHERE id_pelanggan='$cst'")->result();
+		$head['cart'] = $this->db->query("SELECT * FROM keranjang JOIN produk ON produk.id_produk=keranjang.id_produk WHERE id_pelanggan='$cst'")->result_array();
 		$head['krjg'] = $this->db->query("SELECT * FROM keranjang WHERE id_pelanggan='$cst'")->num_rows();
 		$data['ord'] = $this->pemesanan->pesan()->result();
 		$data['ordht'] = $this->pemesanan->pesan()->num_rows();
@@ -34,9 +35,11 @@ class Order extends CI_Controller {
 		$head['judul'] = 'Arwana Store';
 		$cst = $this->session->userdata('ses_id');
 		$head['cust'] = $this->db->query("SELECT * FROM pelanggan WHERE id_pelanggan='$cst'")->result();
+		$d['custm'] = $this->db->query("SELECT * FROM pelanggan JOIN provinsi ON provinsi.id_provinsi=pelanggan.id_provinsi WHERE id_pelanggan='$cst'")->row_array();
 		$head['krjg'] = $this->db->query("SELECT * FROM keranjang WHERE id_pelanggan='$cst'")->num_rows();
 		$d['code'] = $code;
 		$d['detail'] = $this->pemesanan->details($code)->result();
+		$d['detaila'] = $this->pemesanan->details($code)->row_array();
 		$this->load->view('templ/head', $head);
 		$this->load->view('pes/pay', $d);
 		$this->load->view('templ/foot');
@@ -46,6 +49,7 @@ class Order extends CI_Controller {
 		$kode_pemesanan = $this->input->post('kode_pemesanan', TRUE);
 		$metode_bayar = $this->input->post('metode_bayar', TRUE);
 		$status_bayar = "Sudah Bayar";
+		$status_kirim = "Dikemas";
 		$paymento = $this->input->post('paymento');
 		$config['upload_path']          = 'komponen/images/payment';
 		$config['allowed_types']        = 'jpg|jpeg|png';
@@ -62,7 +66,7 @@ class Order extends CI_Controller {
 		} else {
 			$b = array('bukti' => $this->upload->data());
 			$bpay = $b['bukti']['file_name'];
-			$this->pemesanan->pay($kode_pemesanan,$status_bayar,$metode_bayar,$bpay);
+			$this->pemesanan->pay($kode_pemesanan,$status_bayar,$status_kirim,$metode_bayar,$bpay);
 		}
 
 	redirect('order');

@@ -7,16 +7,16 @@
 				<?php
 				foreach($p as $pro):
 				?>
-					<div class="col-md-3 top_brand_left-1">
+					<div class="col-md-3 col-lg-3 col-sm-3">
 						<div class="card bg">
 								<div class="card-body">
 									<a href="<?php echo base_url('detail/product/'); ?><?php echo $pro->id_produk; ?>">
 									<?php
 									if($pro->gambar == null){
 									?>
-									<img title="<?php echo $pro->nama_produk; ?>" alt="<?php echo $pro->nama_produk; ?>" src="<?php echo base_url(); ?>komponen/images/nophoto.png" width="100%">
+									<img title="<?php echo $pro->nama_produk; ?>" alt="<?php echo $pro->nama_produk; ?>" src="<?php echo base_url(); ?>komponen/images/nophoto.png" style="width: 100%; border-radius: 15px 15px;">
 									<?php }else{ ?>
-									<img title=" " alt=" " src="<?php echo base_url(); ?>komponen/images/products/<?php echo $pro->gambar; ?>" width="100%">
+									<img title=" " alt=" " src="<?php echo base_url(); ?>komponen/images/products/<?php echo $pro->gambar; ?>" style="width: 100%; height: 150px; border-radius: 15px 15px; margin: 0px 0px 0px -9px;">
 									<?php } ?>
 									</a>
 									<br/>
@@ -37,11 +37,37 @@
 											</div>
 											<?php } ?>
 								</div>
-							</div>
+						</div>
 					</div>
 					<?php endforeach; ?>
+					<div class="col-md-3 top_brand_left-1">
+						<a href="<?php echo base_url('products'); ?>">
+						<div class="card bg">
+							<div class="card-body ketengah">
+								<font size="5">Lihat Semua <i class="fa fa-arrow-circle-right"></i></font>
+							</div>
+						</div>
+						</a>
+					</div>
 						<div class="clearfix"> </div>
 				</div>
 		</div>
 	</div>
 <!-- //new -->
+<?php
+if($this->session->userdata('masuk')){
+	if($krjg > 0){
+		$total = 0;
+		foreach($cart as $crt){
+			$subtotal = $crt['harga'] * $crt['qty'];
+			$total += $subtotal;
+		}
+?>
+<a href="<?php echo base_url('cart'); ?>">
+	<div class="keranjang">
+		<font size="3"><i class="fa fa-shopping-cart"></i> <?php echo $krjg; ?> Item (<?php echo rupiah($total); ?>) <i class="fa fa-arrow-right"></i></font>
+	</div>
+</a>
+	<?php }else{}
+}	
+?>

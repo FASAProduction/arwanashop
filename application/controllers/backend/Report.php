@@ -9,7 +9,7 @@ class Report extends CI_Controller {
 		$this->load->helper('rupiah_helper');
 		$this->load->helper('tanggal_helper');
 		$this->load->helper('terbilang_helper');
-		if($this->session->userdata('masuk') != TRUE){
+		if($this->session->userdata('enter') != TRUE){
 			redirect('backend');
 		}
     }
@@ -17,8 +17,13 @@ class Report extends CI_Controller {
     public function index()
 	{
                 $head['judul'] = "Backend Laporan - Arwana Store";
-				$adm = $this->session->userdata('ses_id');
+				$adm = $this->session->userdata('adm_id');
 				$head['admn'] = $this->db->query("SELECT * FROM admin WHERE id_admin='$adm'")->row_array();
+				$head['orderan'] = $this->db->query("SELECT * FROM pemesanan WHERE status_bayar='Belum Bayar' GROUP BY kode_pemesanan")->num_rows();
+				$head['listorderan'] = $this->db->query("SELECT * FROM pemesanan
+				JOIN produk ON produk.id_produk=pemesanan.id_produk
+				JOIN pelanggan ON pelanggan.id_pelanggan=pemesanan.id_pelanggan
+				WHERE status_bayar='Belum Bayar' GROUP BY kode_pemesanan")->result();
 				$data['admn'] = $this->db->query("SELECT * FROM admin WHERE id_admin='$adm'")->row_array();
                 $this->load->view('backend/templ/head', $head);
                 $this->load->view('backend/laporan/rep');
@@ -29,7 +34,7 @@ class Report extends CI_Controller {
 		$from = $this->input->post('from');
 		$to = $this->input->post('to');
 		$head['judul'] = "Backend Laporan - Arwana Store";
-		$adm = $this->session->userdata('ses_id');
+		$adm = $this->session->userdata('adm_id');
 		$head['admn'] = $this->db->query("SELECT * FROM admin WHERE id_admin='$adm'")->row_array();
 		$daa['filt'] = $this->admin->data_filter($from,$to)->result();
 		$daa['fil'] = $this->admin->data_filter($from,$to)->num_rows();
@@ -60,7 +65,7 @@ class Report extends CI_Controller {
 	}
 
     public function fakturmonth(){
-        $bulan_ini = date('m');
+        $bulan_ini = date('n');
         $tahun_ini = date('Y');
 
         if($bulan_ini == '1'){

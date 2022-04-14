@@ -9,7 +9,8 @@
 							</div>
 							<div class="form-group">
 								<label>Password</label>
-								<input type="password" class="form-control" name="password" />
+								<input type="password" class="form-control" name="password" id="passw" />
+								<div id="cekleka" onclick="tunjukkanPass();"><i class="fa fa-eye fa-2x" id="mataa"></i></div>
 								<a href=""><small>Lupa password?</small></a>
 							</div>
 							<div class="form-group">
@@ -61,3 +62,19 @@
 						</form>
 					</div>
 				</div>
+				<script type="text/javascript">
+            const password = document.getElementById('passw');
+			const kelas = document.getElementById('mataa');
+            
+            function tunjukkanPass(){
+                if(password.type === 'password'){
+                    password.setAttribute('type', 'text');
+					kelas.setAttribute('class', 'fa fa-eye-slash fa-2x');
+					kelas.setAttribute('style', 'margin: -14px 0px 0px 0px; position: absolute;');
+                } else{
+                    password.setAttribute('type', 'password');
+					kelas.setAttribute('class', 'fa fa-eye fa-2x');
+					kelas.setAttribute('style', 'margin: 0px 0px 0px 0px; position: absolute;');
+                }
+            }
+        </script>

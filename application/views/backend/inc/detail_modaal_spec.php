@@ -1,5 +1,5 @@
 <?php
-foreach($ordall as $or):
+foreach($ordet as $or):
 $ff = $or->kode_pemesanan;
 $r = $this->db->query("SELECT * FROM pemesanan JOIN produk ON produk.id_produk=pemesanan.id_produk WHERE kode_pemesanan='$ff'")->result();
 $ra = $this->db->query("SELECT * FROM pelanggan
